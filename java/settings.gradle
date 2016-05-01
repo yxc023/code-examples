@@ -1,4 +1,5 @@
 rootProject.name = 'code-examples-java'
 include 'apache-poi'
 include 'fork-join'
+include 'gradle'
 
