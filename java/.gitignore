@@ -2,6 +2,7 @@
 build/
 .idea
 out/
+gradle-app.setting
 
 # Package Files #
 *.jar
