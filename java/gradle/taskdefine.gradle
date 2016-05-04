@@ -1,0 +1,8 @@
+group 'com.yangxiaochen.examples'
+version '1.0-SNAPSHOT'
+
+apply plugin: 'java'
+
+task myTask(type: MyTask) {
+
+}
