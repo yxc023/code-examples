@@ -2,5 +2,5 @@ group 'com.yangxiaochen.examples'
 version '1.0-SNAPSHOT'
 
 task copyTask(type: copy) {
-    
+
 }
