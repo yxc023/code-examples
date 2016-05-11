@@ -9,8 +9,16 @@ import org.slf4j.LoggerFactory;
  */
 public class Main {
 
-    Logger logger  = LoggerFactory.getLogger(Main.class);
+    public static Logger logger = LoggerFactory.getLogger(Main.class);
+
     public static void main(String[] args) {
-        
+        Thread.setDefaultUncaughtExceptionHandler(new Thread.UncaughtExceptionHandler() {
+            @Override
+            public void uncaughtException(Thread t, Throwable e) {
+                logger.error("a error {} in {}", e.getMessage(), t.getName());
+            }
+        });
+
+        assert (1 + 1 == 3);
     }
 }
