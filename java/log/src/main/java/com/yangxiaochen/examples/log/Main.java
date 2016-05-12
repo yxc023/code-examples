@@ -12,13 +12,14 @@ public class Main {
     public static Logger logger = LoggerFactory.getLogger(Main.class);
 
     public static void main(String[] args) {
+        logger.trace("start...");
         Thread.setDefaultUncaughtExceptionHandler(new Thread.UncaughtExceptionHandler() {
             @Override
             public void uncaughtException(Thread t, Throwable e) {
-                logger.error("a error {} in {}", e.getMessage(), t.getName());
+                logger.error("a error {} in {} use {}", e.getMessage(), t.getName(), logger.getClass());
             }
         });
-
-        assert (1 + 1 == 3);
+        logger.trace("end...");
+        throw new RuntimeException("test error");
     }
 }
