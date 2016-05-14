@@ -1,20 +1,7 @@
 group 'com.yangxiaochen.examples'
 version '1.0-SNAPSHOT'
 
-
-//buildscript {
-//    repositories {
-//        jcenter()
-//    }
-//    dependencies {
-//        classpath("org.springframework.boot:spring-boot-gradle-plugin:1.3.3.RELEASE")
-//    }
-//}
-
-//apply plugin: 'spring-boot'
 apply plugin: 'java'
-//apply plugin: 'war'
-//apply plugin: 'application'
 
 
 
@@ -31,8 +18,15 @@ dependencies {
     testCompile group: 'junit', name: 'junit', version: '4.11'
 }
 
-task initializeDatabase
-initializeDatabase << { println 'connect to database' }
-initializeDatabase << { println 'update database schema' }
-initializeDatabase { print 'configuring ' }
-initializeDatabase { println 'database connection' }
+//task initializeDatabase
+//initializeDatabase << { println 'connect to database' }
+//initializeDatabase << { println 'update database schema' }
+//initializeDatabase { print 'configuring ' }
+//initializeDatabase { println 'database connection' }
+
+
+
+task jar_product(type: Jar) {
+    println name;
+    println manifest.properties;
+}

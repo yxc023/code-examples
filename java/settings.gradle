@@ -3,4 +3,6 @@ include 'apache-poi'
 include 'fork-join'
 include 'gradle'
 include 'log'
+include 'json'
+include 'lock'
 
