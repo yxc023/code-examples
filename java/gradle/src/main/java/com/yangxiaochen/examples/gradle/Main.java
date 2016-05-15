@@ -1,3 +1,5 @@
+package com.yangxiaochen.examples.gradle;
+
 /**
  * @author yangxiaochen
  * @date 16/5/2 上午12:28

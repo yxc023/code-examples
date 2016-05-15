@@ -16,7 +16,7 @@ public class JsonUtils {
         objectMapper = new ObjectMapper();
         objectMapper.enable(SerializationFeature.INDENT_OUTPUT);
     }
-    
+
     public static String object2String(Object object) {
         try {
             return objectMapper.writeValueAsString(object);
