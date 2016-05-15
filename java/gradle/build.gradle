@@ -41,8 +41,9 @@ task jar_product(type: Jar) {
     sourceSets.getByName("main").getResources().forEach { file->
         println file.canonicalPath
     }
+    println sourceSets.getRules()
 
-
+    from sourceSets.getByName("main").getOutput()
     from "src/main/resources_local"
 
     doLast {
