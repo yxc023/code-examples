@@ -50,8 +50,11 @@ task jar_product(type: Jar) {
         println "last1"
     }
 }
+
 jar {
     doLast {
         println "last2"
     }
 }
+
+test.enabled = false
