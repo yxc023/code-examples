@@ -19,17 +19,14 @@ public class MyActivitiEventListener implements ActivitiEventListener {
 
             case JOB_EXECUTION_SUCCESS:
                 System.out.println("A job well done!");
-                log.info("A job well done!");
                 break;
 
             case JOB_EXECUTION_FAILURE:
                 System.out.println("A job has failed...");
-                log.info("A job has failed...");
                 break;
 
             default:
                 log.info("Event received: {}", event.getType());
-                System.out.println("Event received: " + event.getType());
         }
 
     }
