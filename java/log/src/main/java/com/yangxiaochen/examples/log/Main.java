@@ -1,7 +1,8 @@
 package com.yangxiaochen.examples.log;
 
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
+
 
 /**
  * @author yangxiaochen
@@ -9,7 +10,7 @@ import org.slf4j.LoggerFactory;
  */
 public class Main {
 
-    public static Logger logger = LoggerFactory.getLogger(Main.class);
+    public static Logger logger = LogManager.getLogger(Main.class);
 
     public static void main(String[] args) {
         logger.trace("start...");
@@ -20,6 +21,7 @@ public class Main {
             }
         });
         logger.trace("end...");
-        throw new RuntimeException("test error");
+
+
     }
 }
