@@ -8,6 +8,7 @@
     <Loggers>
         <Root level="TRACE">
             <AppenderRef ref="Console"/>
+
         </Root>
     </Loggers>
 </Configuration>
