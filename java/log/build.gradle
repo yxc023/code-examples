@@ -22,11 +22,11 @@ dependencies {
     // use log4j2 as slf4j's impl
     compile 'org.apache.logging.log4j:log4j-slf4j-impl:2.5'
     // apache common log --> log4j2
-    compile 'org.apache.logging.log4j:log4j-jcl:jar:2.5'
+    compile 'org.apache.logging.log4j:log4j-jcl:2.5'
     // java util log --> log4j2
-    compile 'org.apache.logging.log4j:log4j-jul:jar:2.5'
+    compile 'org.apache.logging.log4j:log4j-jul:2.5'
     // log4j1 --> log4j2
-    compile 'org.apache.logging.log4j:log4j-1.2-api:jar:2.5'
+    compile 'org.apache.logging.log4j:log4j-1.2-api:2.5'
     // log4j2 impl , this depend on log4j2-api
     compile 'org.apache.logging.log4j:log4j-core:2.5'
 
