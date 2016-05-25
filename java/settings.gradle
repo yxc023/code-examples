@@ -6,4 +6,5 @@ include 'log'
 include 'json'
 include 'lock'
 include 'activiti-flow'
+include 'bean'
 
