@@ -5,4 +5,8 @@ package com.yangxiaochen.examples.bean;
  * @date 16/5/25 下午11:29
  */
 public class BeanCopyUtiles {
+
+    public static void main(String[] args) {
+        
+    }
 }
