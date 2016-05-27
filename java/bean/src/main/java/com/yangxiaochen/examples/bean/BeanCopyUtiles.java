@@ -16,5 +16,6 @@ public class BeanCopyUtiles {
         Person p2 = new Person();
         BeanCopy.from(p1).to(p2).copy();
         System.out.println(p2);
+        
     }
 }
