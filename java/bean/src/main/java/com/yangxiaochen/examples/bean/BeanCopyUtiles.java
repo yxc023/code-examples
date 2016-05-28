@@ -1,6 +1,6 @@
 package com.yangxiaochen.examples.bean;
 
-import com.yangxiaochen.examples.bean.data.Person;
+import com.yangxiaochen.examples.bean.lombok.Person;
 import jodd.bean.BeanCopy;
 
 /**
@@ -16,6 +16,5 @@ public class BeanCopyUtiles {
         Person p2 = new Person();
         BeanCopy.from(p1).to(p2).copy();
         System.out.println(p2);
-        
     }
 }

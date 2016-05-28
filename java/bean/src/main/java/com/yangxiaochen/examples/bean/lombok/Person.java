@@ -1,4 +1,4 @@
-package com.yangxiaochen.examples.bean.data;
+package com.yangxiaochen.examples.bean.lombok;
 
 import lombok.Data;
 import lombok.ToString;
