@@ -5,11 +5,12 @@ import lombok.ToString;
 
 /**
  * @author yangxiaochen
- * @date 16/5/26 上午12:19
+ * @date 16/5/29 下午10:29
  */
 @ToString
-public @Data class Person {
+@Data
+public class Dog {
     private int id;
     private String name;
-    private String tel;
+    private String ownerName;
 }
