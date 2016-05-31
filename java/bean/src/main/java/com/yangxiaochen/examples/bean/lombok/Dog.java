@@ -13,4 +13,9 @@ public class Dog {
     private int id;
     private String name;
     private String ownerName;
+
+    public void setId(int id) {
+        System.out.println("my set id");
+        this.id = id + 1;
+    }
 }
