@@ -3,6 +3,7 @@ package com.yangxiaochen.examples.bean.joddbean;
 import com.yangxiaochen.examples.bean.lombok.Person;
 import jodd.bean.BeanCopy;
 import jodd.bean.BeanWalker;
+import lombok.extern.log4j.Log4j2;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -11,6 +12,7 @@ import java.util.Map;
  * @author yangxiaochen
  * @date 16/6/4 下午11:53
  */
+@Log4j2
 public class BeanVist {
 
     public static void main(String[] args) {
@@ -25,7 +27,8 @@ public class BeanVist {
         System.out.println(map);
 
         BeanWalker walker = BeanWalker.walk((name, value) -> {
-            System.out.println(name + " " + value);
+            log.info(name + " " + value);
+            log.info(value.getClass());
         });
 //        walker.map(map);
         walker.bean(p1);
