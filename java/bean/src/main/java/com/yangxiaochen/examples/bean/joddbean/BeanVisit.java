@@ -13,7 +13,7 @@ import java.util.Map;
  * @date 16/6/4 下午11:53
  */
 @Log4j2
-public class BeanVist {
+public class BeanVisit {
 
     public static void main(String[] args) {
 
