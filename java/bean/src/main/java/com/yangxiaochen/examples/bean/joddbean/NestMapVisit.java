@@ -27,7 +27,7 @@ public class NestMapVisit {
         map2.put("msgList",list);
         map.put("map2",map2);
 
-        Object value = BeanUtil.pojo.getProperty(map,"[map2.msgList[1].msg]");
+        Object value = BeanUtil.pojo.getProperty(map,"map2.msgList[1].msg");
         log.info(value);
 
         value = BeanUtil.silent.getProperty(map,"map2.msgList[2].msg");
