@@ -36,5 +36,11 @@ public class NestMapVisit {
         value = BeanUtil.declaredSilent.getProperty(map,"map2.msgList[1].msg2");
         log.info(value);
 
+
+        List<Map<String,String>> msgs = BeanUtil.silent.getProperty(map,"map2.msgList");
+        log.info(msgs.get(0).getClass().getGenericInterfaces());
+
+        List<String> msgStrings = BeanUtil.silent.getProperty(map,"map2.msgList");
+        log.info(msgStrings.get(0));
     }
 }

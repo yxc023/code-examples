@@ -22,7 +22,7 @@ public class BeanVisit {
         p1.setName("John");
         p1.setTel("1101834110");
 
-        
+
 
         Map<String,Object> map = new HashMap();
         BeanCopy.from(p1).to(map).copy();
