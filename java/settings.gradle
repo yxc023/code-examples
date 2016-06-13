@@ -8,4 +8,5 @@ include 'lock'
 include 'activiti-flow'
 include 'bean'
 include 'nio'
+include 'bean-form'
 
