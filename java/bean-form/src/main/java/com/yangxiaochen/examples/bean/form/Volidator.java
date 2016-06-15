@@ -21,8 +21,13 @@ public class Volidator {
         Validator validator = factory.getValidator();
 
         ReportForm reportForm = new ReportForm();
-        Set<ConstraintViolation<ReportForm>> constraintViolations =
-                validator.validate(reportForm);
-        log.info(constraintViolations);
+        try {
+            Set<ConstraintViolation<ReportForm>> constraintViolations =
+                    validator.validate(reportForm);
+            log.info(constraintViolations);
+
+        } catch (Exception e) {
+            log.error(e.getMessage(),e);
+        }
     }
 }

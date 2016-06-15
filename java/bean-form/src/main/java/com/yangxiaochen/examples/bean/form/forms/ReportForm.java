@@ -5,6 +5,7 @@ import lombok.Data;
 import lombok.ToString;
 
 import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Size;
 
 /**
  * @author yangxiaochen
@@ -16,6 +17,8 @@ public class ReportForm {
     @Required
     @NotNull
     private String name;
+    @Size(min = 2, max = 14)
+    private String tel;
     private int gender;
 
 }
