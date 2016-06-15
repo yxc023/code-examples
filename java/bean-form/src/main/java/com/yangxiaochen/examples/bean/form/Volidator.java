@@ -6,6 +6,6 @@ package com.yangxiaochen.examples.bean.form;
  */
 public class Volidator {
     public static void main(String[] args) {
-        
+
     }
 }
