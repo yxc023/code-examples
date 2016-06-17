@@ -24,7 +24,7 @@ public @interface FieldInteraction {
     String expressionCondition();
     String expressionResult();
 
-    String message() default "";
+    String message() default "When \\{{expressionCondition}\\} is true, \\{{expressionResult}\\} must be true";
 
     Class<?>[] groups() default {};
 

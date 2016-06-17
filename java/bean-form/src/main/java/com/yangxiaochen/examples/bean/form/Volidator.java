@@ -26,14 +26,16 @@ public class Volidator {
             Set<ConstraintViolation<ReportForm>> constraintViolations =
                     validator.validate(reportForm);
 
-            reportForm.liandong("xxxx",123);
+            reportForm.liandong("xxxx", 123);
             log.info(constraintViolations);
 
-
+            for (ConstraintViolation<ReportForm> constraintViolation : constraintViolations) {
+                log.info(constraintViolation.getMessage());
+            }
 
 
         } catch (Exception e) {
-            log.error(e.getMessage(),e);
+            log.error(e.getMessage(), e);
         }
     }
 }
