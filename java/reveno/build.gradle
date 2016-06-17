@@ -1,0 +1,21 @@
+group 'com.yangxiaochen.examples'
+version '1.0-SNAPSHOT'
+
+apply plugin: 'java'
+
+sourceCompatibility = 1.8
+
+repositories {
+    mavenCentral()
+}
+
+dependencies {
+    testCompile group: 'junit', name: 'junit', version: '4.11'
+
+
+    compile project(":log")
+    compile 'org.projectlombok:lombok:1.16.8'
+
+    compile 'org.reveno:reveno-core:1.23'
+    compile 'org.reveno:reveno-cluster:1.23'
+}
