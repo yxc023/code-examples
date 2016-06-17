@@ -21,5 +21,8 @@ dependencies {
     compile group: 'org.apache.commons', name: 'commons-lang3', version: '3.4'
 
 
+    compile group: 'org.springframework', name: 'spring-expression', version: '4.3.0.RELEASE'
+
+
 
 }

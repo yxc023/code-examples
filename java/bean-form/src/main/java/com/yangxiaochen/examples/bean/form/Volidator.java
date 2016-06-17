@@ -21,10 +21,16 @@ public class Volidator {
         Validator validator = factory.getValidator();
 
         ReportForm reportForm = new ReportForm();
+        reportForm.setName("yangxiaochen");
         try {
             Set<ConstraintViolation<ReportForm>> constraintViolations =
                     validator.validate(reportForm);
+
+            reportForm.liandong("xxxx",123);
             log.info(constraintViolations);
+
+
+
 
         } catch (Exception e) {
             log.error(e.getMessage(),e);

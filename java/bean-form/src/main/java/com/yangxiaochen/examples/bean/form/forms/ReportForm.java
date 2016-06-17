@@ -1,5 +1,7 @@
 package com.yangxiaochen.examples.bean.form.forms;
 
+import com.yangxiaochen.examples.bean.form.annotations.ConsistentDateParameters;
+import com.yangxiaochen.examples.bean.form.annotations.FieldInteraction;
 import com.yangxiaochen.examples.bean.form.annotations.Required;
 import lombok.Data;
 import lombok.ToString;
@@ -13,6 +15,9 @@ import javax.validation.constraints.Size;
  */
 @ToString
 @Data
+@FieldInteraction.List({
+        @FieldInteraction(expressionCondition = "name != null",expressionResult = "gender > 0"),
+})
 public class ReportForm {
     @Required
     @NotNull
@@ -21,4 +26,8 @@ public class ReportForm {
     private String tel;
     private int gender;
 
+    @ConsistentDateParameters
+    public ReportForm liandong(String name, int gender){
+        return new ReportForm();
+    }
 }

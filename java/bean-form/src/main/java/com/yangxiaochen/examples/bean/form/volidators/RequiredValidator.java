@@ -14,7 +14,6 @@ public class RequiredValidator implements ConstraintValidator<Required, Object> 
 
     @Override
     public void initialize(Required constraintAnnotation) {
-
     }
 
     @Override
