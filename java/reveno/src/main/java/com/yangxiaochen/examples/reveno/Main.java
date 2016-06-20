@@ -22,7 +22,8 @@ public class Main {
                 (id, e, r) -> new AccountView(id, e.name, e.balance));
 
         DynamicCommand createAccount = reveno.domain()
-                .transaction("createAccount", (t, c) -> c.repo().store(t.id(), new Account(t.arg(), 0)))
+                .transaction("createAccount", (transaction, context)
+                        -> context.repo().store(transaction.id(), new Account(transaction.arg(), 0)))
                 .uniqueIdFor(Account.class).command();
 
         DynamicCommand changeBalance = reveno.domain()
@@ -42,6 +43,6 @@ public class Main {
         reveno.shutdown();
 
 
-        
+
     }
 }
