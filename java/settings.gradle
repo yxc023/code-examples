@@ -10,4 +10,5 @@ include 'bean'
 include 'nio'
 include 'bean-form'
 include 'reveno'
+include 'jsch'
 

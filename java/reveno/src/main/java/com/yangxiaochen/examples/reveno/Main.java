@@ -29,7 +29,7 @@ public class Main {
         DynamicCommand changeBalance = reveno.domain()
                 .transaction("changeBalance", (t, c) -> c.repo().store(t.longArg(), c.repo().get(Account.class, t.arg()).add(t.intArg("inc"))))
                 .command();
-        
+
         reveno.startup();
 
         long accountId = reveno.executeSync(createAccount, map("name", "John"));
