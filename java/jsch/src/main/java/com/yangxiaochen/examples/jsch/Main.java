@@ -1,9 +1,9 @@
 package com.yangxiaochen.examples.jsch;
 
-import com.jcraft.jsch.JSchException;
 import com.jcraft.jsch.Session;
 import com.mysql.jdbc.jdbc2.optional.MysqlDataSource;
 import com.pastdev.jsch.DefaultSessionFactory;
+import com.yangxiaochen.examples.jsch.config.SshTunnelDbConfig;
 import jodd.bean.BeanUtil;
 import jodd.db.DbQuery;
 import jodd.db.DbSession;
@@ -47,11 +47,19 @@ public class Main {
         log.info(insertSql);
 
 
-//        OnlineDbBySSHTunnel tunnel = new OnlineDbBySSHTunnel().invoke();
-        DevDbBySSHTunnel tunnel = new DevDbBySSHTunnel().invoke();
-        String dbuser = tunnel.getDbuser();
-        String dbpasswd = tunnel.getDbpasswd();
-        Session session = tunnel.getSession();
+
+        SshTunnelDbConfig config = SshTunnelDbConfig.createDevConfig();
+        String dbuser = config.getDbuser();
+        String dbpasswd = config.getDbpasswd();
+        DefaultSessionFactory defaultSessionFactory = new DefaultSessionFactory(
+                config.getSshusername(), config.getSshhost(), 22);
+
+        defaultSessionFactory.setPassword("homelink");
+        Session session = defaultSessionFactory.newSession();
+        session.connect();
+        session.setPortForwardingL(10240, config.getDbhost(), config.getDbport());
+
+
 
         try {
 
@@ -67,7 +75,7 @@ public class Main {
             dbSession.beginTransaction(new DbTransactionMode().setReadOnly(false));
             try {
 
-                DbQuery q = new DbQuery(dbSession, "SELECT * FROM fn_te.business WHERE business_code LIKE '%JR0010011606200010-0003%'");
+                DbQuery q = new DbQuery(dbSession, "SELECT * FROM fn_te.business WHERE business_code LIKE '%JR0010011606200010-0004%'");
                 Map<String, Object> business = q.find(new MapRowMapper());
 
                 long business_id = BeanUtil.pojo.getProperty(business, "business_id");
@@ -197,64 +205,5 @@ public class Main {
         }
     }
 
-    private static class OnlineDbBySSHTunnel {
-        private String dbuser;
-        private String dbpasswd;
-        private Session session;
-
-        public String getDbuser() {
-            return dbuser;
-        }
-
-        public String getDbpasswd() {
-            return dbpasswd;
-        }
-
-        public Session getSession() {
-            return session;
-        }
-
-        public OnlineDbBySSHTunnel invoke() throws JSchException {
-
-            DefaultSessionFactory defaultSessionFactory = new DefaultSessionFactory(
-                    username, host, 22);
-
-
-            session = defaultSessionFactory.newSession();
-            session.connect();
-            return this;
-        }
-    }
-
-    private static class DevDbBySSHTunnel {
-        private String dbuser;
-        private String dbpasswd;
-        private Session session;
-
-        public String getDbuser() {
-            return dbuser;
-        }
-
-        public String getDbpasswd() {
-            return dbpasswd;
-        }
-
-        public Session getSession() {
-            return session;
-        }
-
-        public DevDbBySSHTunnel invoke() throws JSchException {
-
-
-            DefaultSessionFactory defaultSessionFactory = new DefaultSessionFactory(
-                    username, host, 22);
-
-            defaultSessionFactory.setPassword("homelink");
-            session = defaultSessionFactory.newSession();
-            session.connect();
-
-            return this;
-        }
-    }
 }
 

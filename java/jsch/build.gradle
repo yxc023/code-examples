@@ -18,13 +18,11 @@ dependencies {
     compile group: 'mysql', name: 'mysql-connector-java', version: '5.1.39'
     compile group: 'com.pastdev', name: 'jsch-extension', version: '0.1.6'
 
-
     compile group: 'org.jodd', name: 'jodd-db', version: '3.7'
     compile 'org.jodd:jodd-bean:3.7'
     compile group: 'org.jodd', name: 'jodd-proxetta', version: '3.7'
 
-
-
+    compile 'org.projectlombok:lombok:1.16.8'
 
     // use log4j2 as slf4j's impl
     compile 'org.apache.logging.log4j:log4j-slf4j-impl:2.5'
