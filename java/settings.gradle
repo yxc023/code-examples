@@ -11,4 +11,5 @@ include 'nio'
 include 'bean-form'
 include 'reveno'
 include 'jsch'
+include 'classpath-scanner'
 
