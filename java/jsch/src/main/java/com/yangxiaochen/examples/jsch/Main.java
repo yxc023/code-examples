@@ -48,13 +48,14 @@ public class Main {
 
 
 
-        SshTunnelDbConfig config = SshTunnelDbConfig.createDevConfig();
+        SshTunnelDbConfig config = SshTunnelDbConfig.createOnlineConfig();
+//        SshTunnelDbConfig config = SshTunnelDbConfig.createDevConfig();
         String dbuser = config.getDbuser();
         String dbpasswd = config.getDbpasswd();
         DefaultSessionFactory defaultSessionFactory = new DefaultSessionFactory(
                 config.getSshusername(), config.getSshhost(), 22);
 
-        defaultSessionFactory.setPassword("homelink");
+        defaultSessionFactory.setPassword(config.getSshpasswd());
         Session session = defaultSessionFactory.newSession();
         session.connect();
         session.setPortForwardingL(10240, config.getDbhost(), config.getDbport());
@@ -75,7 +76,7 @@ public class Main {
             dbSession.beginTransaction(new DbTransactionMode().setReadOnly(false));
             try {
 
-                DbQuery q = new DbQuery(dbSession, "SELECT * FROM fn_te.business WHERE business_code LIKE '%JR0010011606200010-0004%'");
+                DbQuery q = new DbQuery(dbSession, "SELECT * FROM fn_te.business WHERE business_code LIKE '%JR0010011606300006-0101%'");
                 Map<String, Object> business = q.find(new MapRowMapper());
 
                 long business_id = BeanUtil.pojo.getProperty(business, "business_id");
