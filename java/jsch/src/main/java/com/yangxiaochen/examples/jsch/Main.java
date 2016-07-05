@@ -76,7 +76,7 @@ public class Main {
             dbSession.beginTransaction(new DbTransactionMode().setReadOnly(false));
             try {
 
-                DbQuery q = new DbQuery(dbSession, "SELECT * FROM fn_te.business WHERE business_code LIKE '%JR0010011606300006-0101%'");
+                DbQuery q = new DbQuery(dbSession, "SELECT * FROM fn_te.business WHERE business_code LIKE '%JR0010011607040040-0001%'");
                 Map<String, Object> business = q.find(new MapRowMapper());
 
                 long business_id = BeanUtil.pojo.getProperty(business, "business_id");
