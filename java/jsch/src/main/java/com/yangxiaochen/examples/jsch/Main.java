@@ -56,7 +56,10 @@ public class Main {
                 config.getSshusername(), config.getSshhost(), 22);
 
         defaultSessionFactory.setPassword(config.getSshpasswd());
+        defaultSessionFactory.setKnownHosts("~/.ssh/known_hosts");
+//        defaultSessionFactory.setConfig("StrictHostKeyChecking", "no");
         Session session = defaultSessionFactory.newSession();
+
         session.connect();
         session.setPortForwardingL(10240, config.getDbhost(), config.getDbport());
 
@@ -76,7 +79,7 @@ public class Main {
             dbSession.beginTransaction(new DbTransactionMode().setReadOnly(false));
             try {
 
-                DbQuery q = new DbQuery(dbSession, "SELECT * FROM fn_te.business WHERE business_code LIKE '%JR0010011607040040-0001%'");
+                DbQuery q = new DbQuery(dbSession, "SELECT * FROM fn_te.business WHERE business_code LIKE '%JR0010011606270059-0001%'");
                 Map<String, Object> business = q.find(new MapRowMapper());
 
                 long business_id = BeanUtil.pojo.getProperty(business, "business_id");
