@@ -13,6 +13,7 @@ group 'com.yangxiaochen.examples'
 version '1.0-SNAPSHOT'
 
 apply plugin: 'java'
+apply plugin: 'maven'
 
 sourceCompatibility = 1.8
 
@@ -56,3 +57,19 @@ jar {
 }
 
 test.enabled = false
+
+/**
+ *  upload jar
+ */
+uploadArchives {
+    repositories {
+        mavenDeployer {
+            repository(url: "http://localhost:8081/repository/yxc023-releases") {
+                authentication(userName: "yxc023",password :"123456")
+            }
+            snapshotRepository(url: "http://localhost:8081/repository/yxc023-snapshots/") {
+                authentication(userName: "yxc023",password :"123456")
+            }
+        }
+    }
+}

@@ -6,6 +6,9 @@ apply plugin: 'java'
 sourceCompatibility = 1.8
 
 repositories {
+    maven {
+        url "http://localhost:8081/repository/yxc023-group/"
+    }
     mavenCentral()
 }
 
