@@ -48,8 +48,8 @@ public class Main {
 
 
 
-        SshTunnelDbConfig config = SshTunnelDbConfig.createOnlineConfig();
-//        SshTunnelDbConfig config = SshTunnelDbConfig.createDevConfig();
+//        SshTunnelDbConfig config = SshTunnelDbConfig.createOnlineConfig();
+        SshTunnelDbConfig config = SshTunnelDbConfig.createDevConfig();
         String dbuser = config.getDbuser();
         String dbpasswd = config.getDbpasswd();
         DefaultSessionFactory defaultSessionFactory = new DefaultSessionFactory(
