@@ -16,3 +16,11 @@ if (!m) {
 println m
 println m.group()
 println m.dump()
+
+
+
+m = text ==~ /match/
+assert m instanceof Boolean
+if (m) {
+    throw new RuntimeException("Should not reach that point!")
+}
