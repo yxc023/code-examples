@@ -27,3 +27,8 @@ assert list == [1, 2, 3, 4, 5, 6]
 def m1 = [c: 3, d: 4]
 def map = [a: 1, b: 2, *: m1, d: 8]
 assert map == [a: 1, b: 2, c: 3, d: 8]
+
+
+x = 1
+y = 2
+assert x+y == 3
