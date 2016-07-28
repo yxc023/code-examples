@@ -18,3 +18,12 @@ class Personp {
 def p = new Personp()
 
 println p.@name
+
+
+def foo(Object... args) { args }
+
+Integer[] ints = [1, 2]
+println foo(ints)
+def ints2 = [3, 4] as Integer[]
+println ints2.class
+println foo(ints,ints2)
