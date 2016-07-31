@@ -20,6 +20,15 @@ def split(String string) {
     }]
 }
 
+//def split(String string) {
+//    def on = { sp->
+//        [trimming: { trim ->
+//            string.split sp collect{ it.trim().replaceAll(trim, "") }
+//        }]
+//    }
+//
+//}
+
 
 def result = split "_a ,_b_ ,c__" on ',' trimming '_'
 println result
