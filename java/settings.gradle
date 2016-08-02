@@ -13,4 +13,5 @@ include 'reveno'
 include 'jsch'
 include 'classpath-scanner'
 include 'groovy'
+include 'error-simulation'
 
