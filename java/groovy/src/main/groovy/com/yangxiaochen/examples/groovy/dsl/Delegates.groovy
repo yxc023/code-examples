@@ -78,7 +78,9 @@ exec(email) {
 }
 
 
-public <T> void configure(List<T> elements, Closure configuration) {
+public <T> void configure(
+        @DelegatesTo.Target List<T> elements,
+        @DelegatesTo(strategy = Closure.DELEGATE_FIRST, genericTypeIndex = 0) Closure configuration) {
     elements.each { e ->
         def clone = configuration.rehydrate(e, this, this)
         clone.resolveStrategy = Closure.DELEGATE_FIRST
@@ -95,8 +97,29 @@ List<Realm> list = []
 3.times { list << new Realm() }
 configure(list) {
     name = 'My Realm'
+
 }
 
 println list
 assert list.every { it.name == 'My Realm' }
 
+
+
+class Mapper<T,U> {
+    final T value
+    Mapper(T value) { this.value = value }
+    U map(@DelegatesTo(type ="T") Closure<U> producer) {
+        producer.delegate = value
+        producer()
+    }
+}
+
+
+@TypeChecked
+def ff() {
+    def mapper = new Mapper<String,Integer>('Hello')
+
+    println mapper.map {
+        length()
+    }
+}
