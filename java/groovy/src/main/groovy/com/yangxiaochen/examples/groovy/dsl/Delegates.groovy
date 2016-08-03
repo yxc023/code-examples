@@ -43,3 +43,19 @@ void sendEmail() {
 }
 
 
+class DelegateObj {
+    void foo(String s) {
+        println "delegateObj ${s}"
+    }
+}
+
+def strategy(Closure closure) {
+
+    code = closure.rehydrate(new DelegateObj(), this, this)
+    code.resolveStrategy = Closure.OWNER_FIRST
+    code()
+}
+
+strategy {
+    foo "fuck"
+}
