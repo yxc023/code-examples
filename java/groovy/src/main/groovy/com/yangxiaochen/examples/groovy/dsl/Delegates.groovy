@@ -65,7 +65,7 @@ strategy {
 }
 
 
-def exec(@DelegatesTo.Target Object target,@DelegatesTo Closure code) {
+def exec(@DelegatesTo.Target Object target, @DelegatesTo Closure code) {
     def clone = code.rehydrate(target, this, this)
     clone()
 }
@@ -76,3 +76,27 @@ exec(email) {
     to '...'
     send()
 }
+
+
+public <T> void configure(List<T> elements, Closure configuration) {
+    elements.each { e ->
+        def clone = configuration.rehydrate(e, this, this)
+        clone.resolveStrategy = Closure.DELEGATE_FIRST
+        clone.call()
+    }
+}
+
+@groovy.transform.ToString
+class Realm {
+    String name
+}
+
+List<Realm> list = []
+3.times { list << new Realm() }
+configure(list) {
+    name = 'My Realm'
+}
+
+println list
+assert list.every { it.name == 'My Realm' }
+

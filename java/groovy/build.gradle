@@ -11,8 +11,8 @@ repositories {
 }
 
 dependencies {
-//    compile 'org.codehaus.groovy:groovy-all:2.4.7'
-    compile localGroovy()
+    compile 'org.codehaus.groovy:groovy-all:2.4.7'
+//    compile localGroovy()
     testCompile group: 'junit', name: 'junit', version: '4.11'
 
 }
