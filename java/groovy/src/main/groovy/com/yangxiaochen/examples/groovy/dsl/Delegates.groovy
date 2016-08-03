@@ -19,6 +19,10 @@ class EmailSpec {
         code.resolveStrategy = Closure.DELEGATE_ONLY
         code()
     }
+
+    void send() {
+        println "send"
+    }
 }
 
 
@@ -58,4 +62,17 @@ def strategy(Closure closure) {
 
 strategy {
     foo "fuck"
+}
+
+
+def exec(@DelegatesTo.Target Object target,@DelegatesTo Closure code) {
+    def clone = code.rehydrate(target, this, this)
+    clone()
+}
+
+def email = new EmailSpec()
+exec(email) {
+    from '...'
+    to '...'
+    send()
 }
