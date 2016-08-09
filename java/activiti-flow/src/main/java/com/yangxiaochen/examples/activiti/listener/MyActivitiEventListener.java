@@ -1,6 +1,5 @@
 package com.yangxiaochen.examples.activiti.listener;
 
-import com.yangxiaochen.examples.activiti.Main;
 import org.activiti.engine.delegate.event.ActivitiEvent;
 import org.activiti.engine.delegate.event.ActivitiEventListener;
 import org.apache.logging.log4j.LogManager;
@@ -11,7 +10,7 @@ import org.apache.logging.log4j.Logger;
  * @date 16/4/9 下午5:02
  */
 public class MyActivitiEventListener implements ActivitiEventListener {
-    private static Logger log = LogManager.getLogger(Main.class);
+    private static Logger log = LogManager.getLogger(MyActivitiEventListener.class);
 
     @Override
     public void onEvent(ActivitiEvent event) {

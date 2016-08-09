@@ -2,6 +2,7 @@ package com.yangxiaochen.examples.activiti;
 
 import com.yangxiaochen.examples.activiti.listener.MyActivitiEventListener;
 import org.activiti.engine.*;
+import org.activiti.engine.runtime.ProcessInstance;
 import org.activiti.engine.task.Task;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
@@ -31,7 +32,7 @@ public class Main {
 
         RepositoryService repositoryService = processEngine.getRepositoryService();
         repositoryService.createDeployment()
-                .addClasspathResource("VacationRequest.bpmn20.xml")
+                .addClasspathResource("VacationRequest.bpmn")
                 .deploy();
 
         LOG.info("Number of process definitions: " + repositoryService.createProcessDefinitionQuery().count());
@@ -43,7 +44,7 @@ public class Main {
         variables.put("vacationMotivation", "I'm really tired!");
 
         RuntimeService runtimeService = processEngine.getRuntimeService();
-//        ProcessInstance processInstance = runtimeService.startProcessInstanceByKey("vacationRequest", variables);
+        ProcessInstance processInstance = runtimeService.startProcessInstanceByKey("vacationRequest", variables);
 
         LOG.info("Number of process instances: " + runtimeService.createProcessInstanceQuery().count());
 
