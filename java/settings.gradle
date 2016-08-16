@@ -15,4 +15,5 @@ include 'classpath-scanner'
 include 'groovy'
 include 'error-simulation'
 include 'log-analysis'
+include 'spring-context-load'
 
