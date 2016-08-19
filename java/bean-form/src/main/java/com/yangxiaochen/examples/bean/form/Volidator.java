@@ -21,7 +21,7 @@ public class Volidator {
         Validator validator = factory.getValidator();
 
         ReportForm reportForm = new ReportForm();
-        reportForm.setName("yangxiaochen");
+        reportForm.setName(null);
         try {
             Set<ConstraintViolation<ReportForm>> constraintViolations =
                     validator.validate(reportForm);
