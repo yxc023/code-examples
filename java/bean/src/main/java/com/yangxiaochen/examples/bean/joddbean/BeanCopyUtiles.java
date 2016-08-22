@@ -36,8 +36,9 @@ public class BeanCopyUtiles {
 
         // from map
         Person p3 = new Person();
-        BeanCopy.from(map).to(p3).copy();
+        BeanCopy.from(map).to(p3).ignoreNulls(true).copy();
         System.out.println(p3);
+
 
 
     }
