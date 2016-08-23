@@ -15,7 +15,11 @@ val a: Int = 1
 
 
 fun main(args: Array<String>) {
-    if (args.size == 0) return
+    if (args.size == 0) {
+        print("No argument: ${args.size}")
+
+        return
+    }
 
     print("First argument: ${args[0]}")
 }
