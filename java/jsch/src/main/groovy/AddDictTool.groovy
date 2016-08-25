@@ -30,7 +30,6 @@ class AddDictTool {
             def user = dbuser
             def password = dbpasswd
             def driver = "com.mysql.jdbc.Driver"
-            def sql = Sql.newInstance(url, user, password, driver)
 
             def dicTypeBean = [data_key: 174, data_value: "证件类型", type: 174, app_id: 20, create_userid: 0]
             def valueRaw = """澳门居民身份证   11
@@ -67,34 +66,20 @@ class AddDictTool {
             valueRaw.eachLine({ line ->
                 dictValueBeans << line.split(" +")
             })
-
             dictValueBeans.sort({ b1, b2 ->
                 return b1[1].toInteger() - b2[1].toInteger()
             })
-
-
+            def sql = Sql.newInstance(url, user, password, driver)
 
             sql.withTransaction {
 
-                sql.execute("""
-INSERT INTO fn_config.t_dictionary_type
-(data_key, data_value, type, app_id, create_userid, create_time)
-VALUES (?, ?, ?, ?, ?, now())
-""",
+                sql.execute("INSERT INTO fn_config.t_dictionary_type(data_key, data_value, type, app_id, create_userid, create_time) VALUES (?, ?, ?, ?, ?, now())",
                         dicTypeBean["data_key"], dicTypeBean["data_value"], dicTypeBean["type"], dicTypeBean["app_id"], dicTypeBean["create_userid"])
-
                 dictValueBeans.each {
-                    println it
-
-                    sql.execute("""
-INSERT INTO fn_config.t_dictionary_dict
-(dict_type, dict_name, dict_code, dict_display_order, create_userid, create_time)
-VALUES (?, ?, ?, ?, ?, now())
-""",
+                    sql.execute("INSERT INTO fn_config.t_dictionary_dict(dict_type, dict_name, dict_code, dict_display_order, create_userid, create_time) VALUES (?, ?, ?, ?, ?, now())",
                             dicTypeBean["data_key"], it[0], it[1], 0, 0)
                 }
             }
-
             sql.close()
         } finally {
             session.disconnect();
