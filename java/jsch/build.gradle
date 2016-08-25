@@ -1,8 +1,21 @@
 group 'com.yangxiaochen.examples'
 version '1.0-SNAPSHOT'
 
+buildscript {
+    ext.kotlin_version = '1.0.3'
+
+    repositories {
+        jcenter()
+    }
+    dependencies {
+        classpath "org.jetbrains.kotlin:kotlin-gradle-plugin:$kotlin_version"
+    }
+}
+
 apply plugin: 'java'
 apply plugin: 'groovy'
+apply plugin: 'kotlin'
+
 
 
 sourceCompatibility = 1.8
@@ -14,6 +27,8 @@ repositories {
 dependencies {
     testCompile group: 'junit', name: 'junit', version: '4.11'
     compile 'org.codehaus.groovy:groovy-all:2.4.7'
+    compile "org.jetbrains.kotlin:kotlin-stdlib:$kotlin_version"
+
 
     compile group: 'com.jcraft', name: 'jsch', version: '0.1.53'
     compile group: 'org.springframework', name: 'spring-jdbc', version: '4.3.0.RELEASE'
