@@ -1,3 +1,5 @@
+package com.yangxiaochen.examples.jsch
+
 import org.springframework.core.io.ClassPathResource
 import java.util.*
 

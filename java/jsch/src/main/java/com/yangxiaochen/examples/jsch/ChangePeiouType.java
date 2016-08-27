@@ -32,8 +32,8 @@ public class ChangePeiouType {
 
 
         SshTunnelDbConfig config = SshTunnelDbConfig.createOnlineConfig();
-//        SshTunnelDbConfig config = SshTunnelDbConfig.createDevConfig();
-//        SshTunnelDbConfig config = SshTunnelDbConfig.createCiConfig();
+//        com.yangxiaochen.examples.jsch.SshTunnelDbConfig config = com.yangxiaochen.examples.jsch.SshTunnelDbConfig.com.yangxiaochen.examples.jsch.createDevConfig();
+//        com.yangxiaochen.examples.jsch.SshTunnelDbConfig config = com.yangxiaochen.examples.jsch.SshTunnelDbConfig.createCiConfig();
         String dbuser = config.getDbuser();
         String dbpasswd = config.getDbpasswd();
         DefaultSessionFactory defaultSessionFactory = new DefaultSessionFactory(

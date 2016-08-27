@@ -1,3 +1,5 @@
+package com.yangxiaochen.examples.jsch
+
 import com.pastdev.jsch.DefaultSessionFactory
 
 /**
@@ -7,7 +9,7 @@ import com.pastdev.jsch.DefaultSessionFactory
 
 
 fun main(args: Array<String>) {
-    //        SshTunnelDbConfig config = SshTunnelDbConfig.createOnlineConfig();
+    //        com.yangxiaochen.examples.jsch.SshTunnelDbConfig config = com.yangxiaochen.examples.jsch.SshTunnelDbConfig.com.yangxiaochen.examples.jsch.createOnlineConfig();
     var config = createDevConfig()
     var dbuser = config.dbuser
     var dbpasswd = config.dbpasswd

@@ -10,7 +10,7 @@ import groovy.sql.Sql
 class AddDictTool {
 
     public static void main(String[] args) {
-        //        SshTunnelDbConfig config = SshTunnelDbConfig.createOnlineConfig();
+        //        com.yangxiaochen.examples.jsch.SshTunnelDbConfig config = com.yangxiaochen.examples.jsch.SshTunnelDbConfig.com.yangxiaochen.examples.jsch.createOnlineConfig();
         SshTunnelDbConfig config = SshTunnelDbConfig.createDevConfig();
         String dbuser = config.getDbuser();
         String dbpasswd = config.getDbpasswd();
