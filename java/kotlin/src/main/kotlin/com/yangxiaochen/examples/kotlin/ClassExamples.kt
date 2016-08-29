@@ -6,3 +6,8 @@ package com.yangxiaochen.examples.kotlin;
  */
 public class ClassExamples {
 }
+
+
+public class Student(val name: String) {
+    
+}
