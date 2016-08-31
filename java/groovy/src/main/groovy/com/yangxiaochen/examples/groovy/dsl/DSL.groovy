@@ -58,3 +58,7 @@ biz("天津面签") {
             }]
     variableGroups = []
 }
+
+def biz(name) {
+    
+}
