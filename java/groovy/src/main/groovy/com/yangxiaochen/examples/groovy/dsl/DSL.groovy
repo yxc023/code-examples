@@ -37,7 +37,7 @@ println result
 
 
 
-biz("天津面签") {
+biz {
     desc = "天津面签"
     participants = [
             {
@@ -59,7 +59,9 @@ biz("天津面签") {
     variableGroups = []
 }
 
-def biz(name) {
 
-    
+
+class BizObj {
+    def desc
 }
+def biz = new BizObj()
