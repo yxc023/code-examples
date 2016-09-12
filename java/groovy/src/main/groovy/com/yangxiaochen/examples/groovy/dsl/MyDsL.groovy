@@ -30,6 +30,7 @@ class L {
     String name
     String desc
 }
+
 class BizObj {
     String desc
     List participants
