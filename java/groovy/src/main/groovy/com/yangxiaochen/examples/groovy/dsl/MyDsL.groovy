@@ -50,7 +50,7 @@ def biz(name, @DelegatesTo(value = BizObj, strategy = Closure.DELEGATE_ONLY)Clos
     code.resolveStrategy = Closure.DELEGATE_ONLY
     println code.delegate.dump()
 
-    
+
     code.call()
     println code.delegate.dump()
 }
