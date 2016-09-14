@@ -1,6 +1,7 @@
 package com.yangxiaochen.examples.jsch
 
 import com.pastdev.jsch.DefaultSessionFactory
+import com.pastdev.jsch.command.CommandRunner
 
 /**
  * @author yangxiaochen
@@ -14,7 +15,7 @@ fun main(args: Array<String>) {
     var dbuser = config.dbuser
     var dbpasswd = config.dbpasswd
     var defaultSessionFactory = DefaultSessionFactory(
-            config.sshusername, config.sshhost, 22);
+            config.sshusername, config.sshhost, 22)
 
     defaultSessionFactory.setPassword(config.sshpasswd)
     defaultSessionFactory.setKnownHosts("~/.ssh/known_hosts")
@@ -22,8 +23,32 @@ fun main(args: Array<String>) {
     var session = defaultSessionFactory.newSession()
 
     session.connect()
-    session.setPortForwardingL(10240, config.dbhost, config.dbport)
+    try {
+//    session.setPortForwardingL(10240, config.dbhost, config.dbport)
+        val commandStr = "cat var/fn-gte/logs/all.log"
+        val commandRunner = CommandRunner(defaultSessionFactory)
+        commandRunner.execute("")
+        val result = commandRunner.execute(commandStr + " | wc -l")
+        if (result.exitCode != 0) {
+            println(result.stderr)
+            return
+        }
 
-    session.disconnect()
+
+        if (result.stdout.toInt() > 1000) {
+            println("result lines: ${result.stdout.toInt()}, continue?")
+            val line = readLine()
+            if (!line.equals("Y", true)) {
+                return
+            }
+        }
+
+        println(commandRunner.execute(commandStr))
+    } finally {
+        session.disconnect()
+    }
+
+    return
+
 
 }
