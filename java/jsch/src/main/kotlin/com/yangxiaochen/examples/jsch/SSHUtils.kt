@@ -10,21 +10,19 @@ import com.pastdev.jsch.command.CommandRunner
 
 
 fun main(args: Array<String>) {
-    //        com.yangxiaochen.examples.jsch.SshTunnelDbConfig config = com.yangxiaochen.examples.jsch.SshTunnelDbConfig.com.yangxiaochen.examples.jsch.createOnlineConfig();
+
     var config = createDevConfig()
-    var dbuser = config.dbuser
-    var dbpasswd = config.dbpasswd
+
     var defaultSessionFactory = DefaultSessionFactory(
             config.sshusername, config.sshhost, 22)
 
     defaultSessionFactory.setPassword(config.sshpasswd)
     defaultSessionFactory.setKnownHosts("~/.ssh/known_hosts")
-//        defaultSessionFactory.setConfig("StrictHostKeyChecking", "no");
+    defaultSessionFactory.setConfig("StrictHostKeyChecking", "no")
     var session = defaultSessionFactory.newSession()
 
     session.connect()
     try {
-//    session.setPortForwardingL(10240, config.dbhost, config.dbport)
         val commandStr = "cat var/fn-gte/logs/all.log"
         val commandRunner = CommandRunner(defaultSessionFactory)
         commandRunner.execute("")
@@ -34,21 +32,27 @@ fun main(args: Array<String>) {
             return
         }
 
+//        var reg = Regex("\\s*")
 
-        if (result.stdout.toInt() > 1000) {
-            println("result lines: ${result.stdout.toInt()}, continue?")
+
+        val lc = result.stdout.replace(Regex("\\s*"),"").toInt()
+
+        if (lc > 1000) {
+            println("result lines: ${lc}, continue? Input 'Y' to continue")
             val line = readLine()
             if (!line.equals("Y", true)) {
                 return
             }
         }
 
-        println(commandRunner.execute(commandStr))
+        var ret = commandRunner.execute(commandStr)
+
+        println(ret.stdout)
     } finally {
+        println("finally")
         session.disconnect()
+        Thread.sleep(1000)
+        System.exit(0)
     }
-
-    return
-
 
 }

@@ -1,5 +1,6 @@
 import com.jcraft.jsch.Session
 import com.pastdev.jsch.DefaultSessionFactory
+import com.pastdev.jsch.command.CommandRunner
 import com.yangxiaochen.examples.jsch.config.SshTunnelDbConfig
 
 /**
@@ -21,7 +22,7 @@ class SSHRemote {
         session.connect();
         try {
             def commandStr = "cat var/fn-gte/logs/all.log"
-            def commandRunner = CommandRunner(defaultSessionFactory)
+            def commandRunner = new CommandRunner(defaultSessionFactory)
             commandRunner.execute("")
             def result = commandRunner.execute(commandStr + " | wc -l")
             if (result.exitCode != 0) {
@@ -30,16 +31,20 @@ class SSHRemote {
             }
 
 
-            if (result.stdout.toInt() > 1000) {
-                println("result lines: ${result.stdout.toInt()}, continue?")
+            if (result.stdout.toInteger() > 1000) {
+                println("result lines: ${result.stdout.trim().replaceAll( ~/\s*/,"").toInteger()}, continue?")
 
-                if (!line.equals("Y", true)) {
-                    return
+                def line =  new BufferedReader(new InputStreamReader(System.in)).readLine()
+                if (line.trim().equalsIgnoreCase("Y")) {
+                    println("YYYYY")
                 }
             }
 
-        }finally {
+        } finally {
+            sleep(1000)
             session.disconnect()
+            sleep(1000)
+            System.exit(0)
         }
     }
 }
