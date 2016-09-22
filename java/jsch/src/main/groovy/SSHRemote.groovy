@@ -9,7 +9,6 @@ import com.yangxiaochen.examples.jsch.config.SshTunnelDbConfig
  */
 class SSHRemote {
     public static void main(String[] args) {
-        //        com.yangxiaochen.examples.jsch.SshTunnelDbConfig config = com.yangxiaochen.examples.jsch.SshTunnelDbConfig.com.yangxiaochen.examples.jsch.createOnlineConfig();
         SshTunnelDbConfig config = SshTunnelDbConfig.createDevConfig();
 
         DefaultSessionFactory defaultSessionFactory = new DefaultSessionFactory(
@@ -17,7 +16,7 @@ class SSHRemote {
 
         defaultSessionFactory.setPassword(config.getSshpasswd());
         defaultSessionFactory.setKnownHosts("~/.ssh/known_hosts");
-//        defaultSessionFactory.setConfig("StrictHostKeyChecking", "no");
+        defaultSessionFactory.setConfig("StrictHostKeyChecking", "no");
         Session session = defaultSessionFactory.newSession();
         session.connect();
         try {

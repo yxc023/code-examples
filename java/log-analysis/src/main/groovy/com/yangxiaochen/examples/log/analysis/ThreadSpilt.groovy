@@ -8,7 +8,7 @@ class ThreadSpilt {
     public static void main(String[] args) {
 
         def fileMap = [:]
-        File logFile = new File("/Users/yangxiaochen/Downloads/deadlock.log")
+        File logFile = new File("/Users/yangxiaochen/Downloads/deadlock2.log")
         logFile.eachLine { line ->
             def terms = line.split(" ")
             if (terms.length <= 3) {
