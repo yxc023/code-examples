@@ -18,4 +18,5 @@ include 'log-analysis'
 include 'spring-context-load'
 include 'kotlin'
 include 'mongodb'
+include 'http-client'
 

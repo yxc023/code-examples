@@ -31,10 +31,11 @@ dependencies {
 
 
     compile group: 'com.jcraft', name: 'jsch', version: '0.1.53'
+    compile group: 'com.pastdev', name: 'jsch-extension', version: '0.1.6'
+
     compile group: 'org.springframework', name: 'spring-jdbc', version: '4.3.0.RELEASE'
 
     compile group: 'mysql', name: 'mysql-connector-java', version: '5.1.39'
-    compile group: 'com.pastdev', name: 'jsch-extension', version: '0.1.6'
 
     compile group: 'org.jodd', name: 'jodd-db', version: '3.7'
     compile 'org.jodd:jodd-bean:3.7'

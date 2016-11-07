@@ -32,8 +32,6 @@ fun main(args: Array<String>) {
             return
         }
 
-//        var reg = Regex("\\s*")
-
 
         val lc = result.stdout.replace(Regex("\\s*"),"").toInt()
 
