@@ -19,4 +19,5 @@ include 'spring-context-load'
 include 'kotlin'
 include 'mongodb'
 include 'http-client'
+include 'redisson'
 
