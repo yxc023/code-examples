@@ -25,27 +25,35 @@ public class Main {
         }
     }
 
-    public static void main(String[] args) throws Exception {
-        while (true) {
-            try {
-                Be b = new Be();
-                b.a = "1";
-                b.b = 1;
 
-                try {
-                    throw new RuntimeException();
-                } catch (Throwable e) {
-                    b.a = "2";
-                    b.b = 2;
-                    throw new Exception(e);
-                } finally {
-                    if (b.b != 2) {
-                        System.out.println(b.a + " " + b.b);
-                    }
-                }
-            } catch (Exception e) {
+    static class TException extends RuntimeException {
+        public TException() {
+        }
 
-            }
+        public TException(String message) {
+            super(message);
+        }
+
+        public TException(String message, Throwable cause) {
+            super(message, cause);
+        }
+
+        public TException(Throwable cause) {
+            super(cause);
+        }
+
+        public TException(String message, Throwable cause, boolean enableSuppression, boolean writableStackTrace) {
+            super(message, cause, enableSuppression, writableStackTrace);
+        }
+    }
+
+    public static void main(String[] args) {
+        try {
+            throw new TException();
+//        } catch (TException e) {
+//            throw e;
+        } catch (RuntimeException e) {
+            throw new TException(e);
         }
     }
 }

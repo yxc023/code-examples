@@ -2,6 +2,7 @@ package com.yangxiaochen.examples.log;
 
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
+import org.apache.logging.log4j.MarkerManager;
 
 
 /**
@@ -20,6 +21,25 @@ public class Main {
                 logger.error("a error {} in {} use {}", e.getMessage(), t.getName(), logger.getClass());
             }
         });
+
+        try {
+            Object a = null;
+            a.toString();
+        } catch (Exception e) {
+            logger.error("空指针", e);
+            logger.error(e.getMessage(), e);
+            logger.error(e);
+            logger.error(e.getMessage(), e);
+            logger.error(MarkerManager.getMarker("mark"),"something",e);
+            logger.error("调用UC的getEhrUserByUserId方法出错，userId is {}", 1, e);
+        }
+
+        try {
+            throw ServiceException.create("haha");
+        } catch (Exception e) {
+            logger.error("出错了", e);
+        }
+
         logger.trace("end...");
 
 
