@@ -1,5 +1,6 @@
 package com.yangxiaochen.examples.log;
 
+import com.google.common.base.Throwables;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.apache.logging.log4j.MarkerManager;
@@ -28,16 +29,21 @@ public class Main {
         } catch (Exception e) {
             logger.error("空指针", e);
             logger.error(e.getMessage(), e);
-            logger.error(e);
+            logger.error(e); // wrong
             logger.error(e.getMessage(), e);
             logger.error(MarkerManager.getMarker("mark"),"something",e);
             logger.error("调用UC的getEhrUserByUserId方法出错，userId is {}", 1, e);
         }
 
         try {
-            throw ServiceException.create("haha");
+            try {
+                throw new ServiceException();
+            } catch (Exception e) {
+                logger.error("出错了", e);
+                Throwables.propagateIfPossible(e, ServiceException.class);
+            }
         } catch (Exception e) {
-            logger.error("出错了", e);
+            logger.error("Throwables",e);
         }
 
         logger.trace("end...");
