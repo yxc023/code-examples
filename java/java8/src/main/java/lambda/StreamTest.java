@@ -1,6 +1,7 @@
 package lambda;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 import java.util.Map;
 import java.util.stream.Collectors;
@@ -80,17 +81,25 @@ public class StreamTest {
         persons.add(new Person("Lucy", 24, 50, 'f'));
 
 
+        List<Person> females = new ArrayList<>();
         for (Person person : persons) {
             if (person.getGender() == 'f') {
-
+                females.add(person);
             }
         }
+        females.sort((p1, p2) -> Integer.compare(p2.getScore(), p1.getScore()));
+        StringBuilder builder = new StringBuilder();
+        for (Person female : females) {
+            builder.append(female.getName());
+            builder.append(",");
+        }
+        System.out.println(builder.toString());
 
+        // 将所有女生名字按照分数从高到低逗号分隔输出
         String result = persons.stream()
                 .filter(p -> p.getGender() == 'f')
                 .sorted((p1, p2) -> Integer.compare(p2.getScore(), p1.getScore()))
                 .map(Person::getName)
-                .peek(System.out::println)
                 .reduce((name1, name2) -> name1 + "," + name2)
                 .get();
 
@@ -98,7 +107,7 @@ public class StreamTest {
         System.out.println();
 
 //        System.out.println(persons);
-         Stream<String> names = persons.stream()
+        Stream<String> names = persons.stream()
                 .sorted((p1, p2) -> Integer.compare(p2.getScore(), p1.getScore()))
                 .map(Person::getName)
                 .peek(System.out::println)
@@ -109,14 +118,18 @@ public class StreamTest {
         System.out.println(names.collect(Collectors.toList()));
 
         // 男女分组
-        Map<Character, List<Person>> map = persons.stream().collect(Collectors.groupingBy(p-> p.getGender()));
+        Map<Character, List<Person>> map = persons.stream()
+                .collect(Collectors.groupingBy(p -> p.getGender()));
         System.out.println(map);
 
         // 男女总分
-        Map<Character, Integer> map2 = persons.stream().collect(Collectors.groupingBy(p-> p.getGender(),
-                Collectors.summingInt(p->p.getScore()))
+        Map<Character, Integer> map2 = persons.stream()
+                .collect(Collectors.groupingBy(Person::getGender, Collectors.summingInt(Person::getScore))
         );
         System.out.println(map2);
+
+        boolean isAllPass = persons.parallelStream().allMatch(person -> person.getScore() >= 60);
+
 
 
         int sum = persons.parallelStream().peek(System.out::println).mapToInt(Person::getScore).sum();
@@ -124,6 +137,11 @@ public class StreamTest {
 
         persons.removeIf(person -> person.getScore() < 60);
         persons.forEach(System.out::println);
+
+
+        System.out.println(Arrays.asList("huhu", "hha").stream().reduce((s1, s2) -> String.join(",", s1, s2)).get());
+
+        persons.toArray(new Person[persons.size()]);
 
     }
 }
