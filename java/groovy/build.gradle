@@ -1,18 +1,18 @@
-group 'com.yangxiaochen.examples'
-version '1.0-SNAPSHOT'
+group('com.yangxiaochen.examples')
+version('1.0-SNAPSHOT')
 
-apply plugin: 'groovy'
-apply plugin: 'java'
+apply(plugin: 'groovy')
+apply(plugin: 'java')
 
 sourceCompatibility = 1.8
 
-repositories {
+repositories ({
     mavenCentral()
-}
+})
 
-dependencies {
-    compile 'org.codehaus.groovy:groovy-all:2.4.7'
-//    compile localGroovy()
-    testCompile group: 'junit', name: 'junit', version: '4.11'
+dependencies({
+    compile('org.codehaus.groovy:groovy-all:2.4.7')
+    compile group: 'org.gradle', name: 'gradle-core', version: '3.2'
 
-}
+    testCompile(group: 'junit', name: 'junit', version: '4.11')
+})

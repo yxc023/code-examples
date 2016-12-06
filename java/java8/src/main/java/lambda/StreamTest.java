@@ -1,9 +1,6 @@
 package lambda;
 
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
@@ -87,7 +84,12 @@ public class StreamTest {
                 females.add(person);
             }
         }
-        females.sort((p1, p2) -> Integer.compare(p2.getScore(), p1.getScore()));
+        females.sort(new Comparator<Person>() {
+            @Override
+            public int compare(Person p1, Person p2) {
+                return Integer.compare(p2.getScore(), p1.getScore());
+            }
+        });
         StringBuilder builder = new StringBuilder();
         for (Person female : females) {
             builder.append(female.getName());
@@ -96,15 +98,15 @@ public class StreamTest {
         System.out.println(builder.toString());
 
         // 将所有女生名字按照分数从高到低逗号分隔输出
-        String result = persons.stream()
+        persons.stream()
                 .filter(p -> p.getGender() == 'f')
                 .sorted((p1, p2) -> Integer.compare(p2.getScore(), p1.getScore()))
                 .map(Person::getName)
                 .reduce((name1, name2) -> name1 + "," + name2)
-                .get();
+                .ifPresent(result -> System.out.println(result));
 
-        System.out.println(result);
-        System.out.println();
+//        System.out.println(result);
+//        System.out.println();
 
 //        System.out.println(persons);
         Stream<String> names = persons.stream()
@@ -125,11 +127,10 @@ public class StreamTest {
         // 男女总分
         Map<Character, Integer> map2 = persons.stream()
                 .collect(Collectors.groupingBy(Person::getGender, Collectors.summingInt(Person::getScore))
-        );
+                );
         System.out.println(map2);
 
         boolean isAllPass = persons.parallelStream().allMatch(person -> person.getScore() >= 60);
-
 
 
         int sum = persons.parallelStream().peek(System.out::println).mapToInt(Person::getScore).sum();
