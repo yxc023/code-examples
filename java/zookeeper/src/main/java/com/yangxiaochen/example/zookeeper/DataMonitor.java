@@ -9,7 +9,7 @@ import java.util.Arrays;
  * @author yangxiaochen
  * @date 2016/12/15 10:33
  */
-public class DataMonitor implements Watcher, AsyncCallback.StatCallback {
+public class DataMonitor implements AsyncCallback.StatCallback {
 
     ZooKeeper zk;
 
@@ -54,6 +54,7 @@ public class DataMonitor implements Watcher, AsyncCallback.StatCallback {
 
     @Override
     public void processResult(int rc, String path, Object ctx, Stat stat) {
+        System.out.println(rc + " " + path + " " + ctx + " " + stat);
         boolean exists;
         switch (rc) {
             case KeeperException.Code.Ok:
@@ -93,10 +94,9 @@ public class DataMonitor implements Watcher, AsyncCallback.StatCallback {
 
     }
 
-    @Override
     public void process(WatchedEvent event) {
         String path = event.getPath();
-        if (event.getType() == Event.EventType.None) {
+        if (event.getType() == Watcher.Event.EventType.None) {
             // We are are being told that the state of the
             // connection has changed
             switch (event.getState()) {
