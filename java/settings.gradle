@@ -22,4 +22,5 @@ include 'http-client'
 include 'redisson'
 include 'leetcode'
 include 'java8'
+include 'zookeeper'
 
