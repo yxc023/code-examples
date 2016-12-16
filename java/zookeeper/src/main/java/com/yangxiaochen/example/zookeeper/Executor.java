@@ -11,7 +11,7 @@ import java.io.IOException;
  * @author yangxiaochen
  * @date 2016/12/15 10:25
  */
-public class Executor implements Watcher, Runnable , DataMonitor.DataMonitorListener {
+public class Executor implements Watcher, Runnable, DataMonitor.DataMonitorListener {
 
     String znode;
 
@@ -30,6 +30,15 @@ public class Executor implements Watcher, Runnable , DataMonitor.DataMonitorList
         this.filename = filename;
         this.exec = exec;
         zk = new ZooKeeper(hostPort, 3000, this);
+        while (true) {
+            System.out.println(zk.getState());
+            if (zk.getState().equals(ZooKeeper.States.CONNECTED)) {
+                break;
+            }
+            Thread.yield();
+        }
+
+
         dm = new DataMonitor(zk, znode, null, this);
     }
 
@@ -50,7 +59,6 @@ public class Executor implements Watcher, Runnable , DataMonitor.DataMonitorList
         System.out.println(event);
         dm.process(event);
     }
-
 
 
     @Override
@@ -112,7 +120,7 @@ public class Executor implements Watcher, Runnable , DataMonitor.DataMonitorList
 //                    .println("USAGE: Executor hostPort znode filename program [args ...]");
 //            System.exit(2);
 //        }
-        String hostPort = "127.0.0.1:2181";
+        String hostPort = "127.0.0.1:2181,127.0.0.1:2182,127.0.0.1:2183";
         String znode = "/zktest";
         String filename = "zktest";
         String exec[] = new String[3];

@@ -21,6 +21,7 @@ public class ZkClient {
             System.out.println(event);
             try {
                zkClient.zk.exists("/zktest1",true);
+
 //                System.out.println(new String(data));
             } catch (KeeperException e) {
                 e.printStackTrace();

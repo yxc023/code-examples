@@ -71,6 +71,7 @@ public class DataMonitor implements AsyncCallback.StatCallback {
             default:
                 // Retry errors
                 zk.exists(znode, true, this, null);
+
                 return;
         }
 
