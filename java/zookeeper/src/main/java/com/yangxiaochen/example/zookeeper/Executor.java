@@ -64,42 +64,10 @@ public class Executor implements Watcher, Runnable, DataMonitor.DataMonitorListe
     @Override
     public void exists(byte[] data) {
         if (data == null) {
-//            if (child != null) {
-//                System.out.println("Killing process");
-//                child.destroy();
-//                try {
-//                    child.waitFor();
-//                } catch (InterruptedException e) {
-//                }
-//            }
-//            child = null;
-        } else {
-//            if (child != null) {
-//                System.out.println("Stopping child");
-//                child.destroy();
-//                try {
-//                    child.waitFor();
-//                } catch (InterruptedException e) {
-//                    e.printStackTrace();
-//                }
-//            }
-//            try {
-////                FileOutputStream fos = new FileOutputStream(filename);
-////                fos.write(data);
-////                fos.close();
-//            } catch (IOException e) {
-//                e.printStackTrace();
-//            }
 
+        } else {
             System.out.println(new String(data));
-//            try {
-//                System.out.println("Starting child");
-//                child = Runtime.getRuntime().exec(exec);
-//                new StreamWriter(child.getInputStream(), System.out);
-//                new StreamWriter(child.getErrorStream(), System.err);
-//            } catch (IOException e) {
-//                e.printStackTrace();
-//            }
+
         }
     }
 
