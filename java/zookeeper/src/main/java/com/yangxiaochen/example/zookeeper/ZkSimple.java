@@ -10,15 +10,15 @@ import java.io.IOException;
  * @author yangxiaochen
  * @date 2016/12/15 10:18
  */
-public class ZkClient {
+public class ZkSimple {
 
     ZooKeeper zk;
 
 
     public static void main(String[] args) throws IOException, KeeperException, InterruptedException {
         String znode = "/zktest1";
-        ZkClient zkClient = new ZkClient();
-        zkClient.zk = new ZooKeeper("127.0.0.1:2181,127.0.0.1:2182,127.0.0.1:2183", 3000, event -> {
+        ZkSimple zkSimple = new ZkSimple();
+        zkSimple.zk = new ZooKeeper("127.0.0.1:2181,127.0.0.1:2182,127.0.0.1:2183", 3000, event -> {
             System.out.println(event);
 
             if (event.getType() == Watcher.Event.EventType.None) {
@@ -42,11 +42,11 @@ public class ZkClient {
             } else {
                 try {
                     // watch use new watcher
-                    zkClient.zk.exists(znode, (e) -> {
+                    zkSimple.zk.exists(znode, (e) -> {
                         System.out.println("i'm the watch2~ " + event);
                         try {
                             // watch use default watcher
-                            zkClient.zk.exists(znode, true);
+                            zkSimple.zk.exists(znode, true);
                         } catch (KeeperException e1) {
                             e1.printStackTrace();
                         } catch (InterruptedException e1) {
@@ -63,14 +63,14 @@ public class ZkClient {
 
 
         while (true) {
-            if (zkClient.zk.getState().equals(ZooKeeper.States.CONNECTED)) {
+            if (zkSimple.zk.getState().equals(ZooKeeper.States.CONNECTED)) {
                 break;
             }
             Thread.yield();
         }
 
         // watch use default watcher
-        zkClient.zk.exists(znode, true);
+        zkSimple.zk.exists(znode, true);
 
 
         System.in.read();
