@@ -41,7 +41,18 @@ public class ZkClient {
                 }
             } else {
                 try {
-                    zkClient.zk.exists(znode, true);
+                    // watch use new watcher
+                    zkClient.zk.exists(znode, (e) -> {
+                        System.out.println("i'm the watch2~ " + event);
+                        try {
+                            // watch use default watcher
+                            zkClient.zk.exists(znode, true);
+                        } catch (KeeperException e1) {
+                            e1.printStackTrace();
+                        } catch (InterruptedException e1) {
+                            e1.printStackTrace();
+                        }
+                    });
                 } catch (KeeperException e) {
                     e.printStackTrace();
                 } catch (InterruptedException e) {
@@ -57,10 +68,9 @@ public class ZkClient {
             }
             Thread.yield();
         }
+
+        // watch use default watcher
         zkClient.zk.exists(znode, true);
-        zkClient.zk.register((event) -> {
-            System.out.println("i'm the watch2~ " + event);
-        });
 
 
         System.in.read();
