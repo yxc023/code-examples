@@ -40,7 +40,6 @@ public class ZkClient {
 
                 }
             } else {
-
                 try {
                     zkClient.zk.exists(znode, true);
                 } catch (KeeperException e) {
