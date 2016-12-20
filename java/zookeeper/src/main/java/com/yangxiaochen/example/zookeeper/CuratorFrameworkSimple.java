@@ -4,6 +4,8 @@ import org.apache.curator.framework.CuratorFramework;
 import org.apache.curator.framework.CuratorFrameworkFactory;
 import org.apache.curator.framework.api.CuratorWatcher;
 import org.apache.curator.retry.RetryForever;
+import org.apache.zookeeper.CreateMode;
+import org.apache.zookeeper.KeeperException;
 
 /**
  * @author yangxiaochen
@@ -24,6 +26,21 @@ public class CuratorFrameworkSimple {
         };
         client.start();
         client.checkExists().usingWatcher(watcher).forPath("/zktest1");
+
+
+        String resource = "resource1";
+
+        while (true) {
+            try {
+                System.out.println("create lock");
+                client.create().withMode(CreateMode.CONTAINER).forPath("/lock");
+                client.create().withMode(CreateMode.EPHEMERAL_SEQUENTIAL).forPath("/lock/" + resource + "/lock", "0".getBytes());
+                break;
+
+            } catch (KeeperException.NoNodeException e) {
+                client.create().withMode(CreateMode.CONTAINER).forPath("/lock/"+resource);
+            }
+        }
 
 
 

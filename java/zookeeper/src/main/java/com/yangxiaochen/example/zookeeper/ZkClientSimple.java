@@ -2,7 +2,6 @@ package com.yangxiaochen.example.zookeeper;
 
 import org.I0Itec.zkclient.IZkDataListener;
 import org.I0Itec.zkclient.ZkClient;
-import org.I0Itec.zkclient.ZkLock;
 import org.I0Itec.zkclient.serialize.BytesPushThroughSerializer;
 
 import java.io.IOException;
@@ -32,8 +31,12 @@ public class ZkClientSimple {
         zkClient.subscribeDataChanges("/zktest1", listener);
 
 
-        ZkLock zkLock = new ZkLock();
-        zkLock.
+
+
+
+
         System.in.read();
+
+
     }
 }
