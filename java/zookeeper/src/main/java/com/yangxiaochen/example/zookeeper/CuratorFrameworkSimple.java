@@ -33,12 +33,12 @@ public class CuratorFrameworkSimple {
         while (true) {
             try {
                 System.out.println("create lock");
-                client.create().withMode(CreateMode.CONTAINER).forPath("/lock");
+                client.create().withMode(CreateMode.EPHEMERAL).forPath("/lock");
                 client.create().withMode(CreateMode.EPHEMERAL_SEQUENTIAL).forPath("/lock/" + resource + "/lock", "0".getBytes());
                 break;
 
             } catch (KeeperException.NoNodeException e) {
-                client.create().withMode(CreateMode.CONTAINER).forPath("/lock/"+resource);
+                client.create().withMode(CreateMode.EPHEMERAL).forPath("/lock/"+resource);
             }
         }
 
