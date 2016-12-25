@@ -1,3 +1,6 @@
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
+
 /**
  * @author yangxiaochen
  * @date 2016/11/23 12:51
@@ -48,12 +51,14 @@ public class Main {
     }
 
     public static void main(String[] args) {
-        try {
-            throw new TException();
-//        } catch (TException e) {
-//            throw e;
-        } catch (RuntimeException e) {
-            throw new TException(e);
-        }
+        int d = LocalDateTime.now().getDayOfYear() - LocalDateTime.parse("2016-03-14 00:00:00", DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss")).getDayOfYear();
+        System.out.println(d/365.0 * 1500);
+//        try {
+//            throw new TException();
+////        } catch (TException e) {
+////            throw e;
+//        } catch (RuntimeException e) {
+//            throw new TException(e);
+//        }
     }
 }
