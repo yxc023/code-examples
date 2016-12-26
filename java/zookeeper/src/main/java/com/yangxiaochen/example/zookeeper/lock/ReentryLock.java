@@ -19,6 +19,7 @@ public class ReentryLock {
     private String path;
     private String nodeName;
 
+
     public ReentryLock(ZkClient client, String path) {
         this.client = client;
         this.path = path;
@@ -76,6 +77,7 @@ public class ReentryLock {
             synchronized (this) {
                 System.out.println("wait");
                 this.wait();
+
                 System.out.println("gogo");
             }
         }

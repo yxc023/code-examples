@@ -51,7 +51,7 @@ public class Main {
     }
 
     public static void main(String[] args) {
-        int d = LocalDateTime.now().getDayOfYear() - LocalDateTime.parse("2016-03-14 00:00:00", DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss")).getDayOfYear();
+        int d = LocalDateTime.now().getDayOfYear() - LocalDateTime.parse("2016-03-14 00:00:00", DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss")).getDayOfYear() - 1;
         System.out.println(d/365.0 * 1500);
 //        try {
 //            throw new TException();
