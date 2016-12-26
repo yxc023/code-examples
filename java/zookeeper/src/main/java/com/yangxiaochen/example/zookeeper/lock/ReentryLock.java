@@ -89,6 +89,7 @@ public class ReentryLock {
 
     public static void main(String[] args) throws InterruptedException {
         ZkClient zkClient = new ZkClient("127.0.0.1:2181,127.0.0.1:2182,127.0.0.1:2183", 3000, 3000, new BytesPushThroughSerializer());
+
         ReentryLock lock = new ReentryLock(zkClient , "resouce1");
 
         ReentryLock lock2 = new ReentryLock(zkClient , "resouce1");
