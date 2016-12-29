@@ -1,6 +1,7 @@
 package com.yangxiaochen.examples.lock;
 
 import java.util.concurrent.locks.ReentrantLock;
+import java.util.concurrent.locks.ReentrantReadWriteLock;
 
 /**
  * @author yangxiaochen
@@ -9,6 +10,7 @@ import java.util.concurrent.locks.ReentrantLock;
 public class LockExample {
     public static void main(String[] args) {
         ReentrantLock lock = new ReentrantLock();
+        ReentrantReadWriteLock reentrantReadWriteLock = new ReentrantReadWriteLock();
 
 
     }

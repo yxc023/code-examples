@@ -6,7 +6,9 @@ apply plugin: 'java'
 sourceCompatibility = 1.8
 
 repositories {
-    jcenter()
+    maven {
+        url "http://localhost:8081/repository/yxc023-group/"
+    }
 }
 
 dependencies {
@@ -16,5 +18,7 @@ dependencies {
     compile 'org.projectlombok:lombok:1.16.8'
     compile 'org.jodd:jodd-core:3.7'
     compile 'org.jodd:jodd-bean:3.7'
+    compile group: 'joda-time', name: 'joda-time', version: '2.9.7'
+
 
 }

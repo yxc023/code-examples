@@ -42,5 +42,6 @@ public class NestMapVisit {
 
         List<String> msgStrings = BeanUtil.silent.getProperty(map,"map2.msgList");
         log.info(msgStrings.get(0));
+
     }
 }
