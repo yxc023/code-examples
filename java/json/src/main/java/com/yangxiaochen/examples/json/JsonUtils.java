@@ -4,6 +4,9 @@ import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.SerializationFeature;
 
+import java.util.HashMap;
+import java.util.Map;
+
 /**
  * @author yangxiaochen
  * @date 16/5/14 下午9:48
@@ -23,5 +26,13 @@ public class JsonUtils {
         } catch (JsonProcessingException e) {
             throw new JsonProcessingQuietException(e);
         }
+    }
+
+    public static void main(String[] args) throws JsonProcessingException {
+        ObjectMapper objectMapper = new ObjectMapper();
+        Map map = new HashMap();
+        map.put("姓名", "杨晓辰");
+
+        System.out.println(objectMapper.writeValueAsString(map));
     }
 }
