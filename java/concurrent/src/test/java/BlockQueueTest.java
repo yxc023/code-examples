@@ -9,8 +9,22 @@ import java.util.concurrent.LinkedBlockingQueue;
 public class BlockQueueTest {
 
     @Test
-    public void testBlockQueue() {
-        LinkedBlockingQueue queue = new LinkedBlockingQueue();
+    public void testBlockQueue() throws InterruptedException {
+        LinkedBlockingQueue<Integer> queue = new LinkedBlockingQueue(1);
+
+        System.out.println(queue.offer(1));
+
+        new Thread(() -> {
+            try {
+                Thread.sleep(2000);
+            } catch (InterruptedException e) {
+                e.printStackTrace();
+            }
+            System.out.println(queue.poll());
+        }).start();
+
+        queue.put(2);
+        System.out.println("ok");
 
     }
 }
