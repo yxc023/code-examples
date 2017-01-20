@@ -1,5 +1,8 @@
 import org.junit.Test;
 
+import java.io.IOException;
+import java.util.concurrent.BrokenBarrierException;
+import java.util.concurrent.CyclicBarrier;
 import java.util.concurrent.LinkedBlockingQueue;
 
 /**
@@ -58,5 +61,59 @@ public class BlockQueueTest {
         Thread.sleep(3000);
         thread.interrupt();
         Thread.sleep(3000);
+    }
+
+    @Test
+    public void testBarrier() throws BrokenBarrierException, InterruptedException, IOException {
+        CyclicBarrier barrier = new CyclicBarrier(10 + 1, ()-> {
+            System.out.println("barrier end action");
+        });
+
+        for (int i = 0; i < 10; i++) {
+            new Thread(() -> {
+                try {
+                    Thread.sleep((long) (Math.random()*10000));
+                } catch (InterruptedException e) {
+                    e.printStackTrace();
+                }
+                System.out.println(Thread.currentThread().getName() + " ok");
+                try {
+                    barrier.await();
+                } catch (InterruptedException e) {
+                    e.printStackTrace();
+                } catch (BrokenBarrierException e) {
+                    e.printStackTrace();
+                }
+                System.out.println(Thread.currentThread().getName() + " end");
+            }).start();
+        }
+
+        System.out.println("wait..");
+        barrier.await();
+        System.out.println("barrier out , go for second part:");
+
+        for (int i = 0; i < 10; i++) {
+            new Thread(() -> {
+                try {
+                    Thread.sleep((long) (Math.random()*10000));
+                } catch (InterruptedException e) {
+                    e.printStackTrace();
+                }
+                System.out.println(Thread.currentThread().getName() + " ok");
+                try {
+                    barrier.await();
+                } catch (InterruptedException e) {
+                    e.printStackTrace();
+                } catch (BrokenBarrierException e) {
+                    e.printStackTrace();
+                }
+                System.out.println(Thread.currentThread().getName() + " end");
+            }).start();
+        }
+        System.out.println("wait..");
+        barrier.await();
+        System.out.println("barrier out");
+
+
     }
 }
