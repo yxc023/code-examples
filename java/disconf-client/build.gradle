@@ -20,6 +20,11 @@ buildscript {
 }
 sourceCompatibility = 1.8
 
+bootRun {
+    // support passing -Dsystem.property=value to bootRun task
+    systemProperties = System.properties
+}
+
 repositories {
     maven {
         url "http://maven.aliyun.com/nexus/content/groups/public"
