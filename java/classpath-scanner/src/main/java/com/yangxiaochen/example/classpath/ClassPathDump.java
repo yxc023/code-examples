@@ -1,6 +1,7 @@
 package com.yangxiaochen.example.classpath;
 
 import io.github.lukehutch.fastclasspathscanner.FastClasspathScanner;
+import sun.misc.Launcher;
 
 import java.io.IOException;
 import java.net.URL;
@@ -10,6 +11,8 @@ import java.net.URLClassLoader;
  * @author yangxiaochen
  * @date 2017/1/12 12:26
  */
+
+
 public class ClassPathDump {
 
     public static void main(String[] args) throws IOException {
@@ -27,5 +30,12 @@ public class ClassPathDump {
         for (URL url : urls) {
             System.out.println(url);
         }
+
+
+        System.out.println(Launcher.getLauncher().getClassLoader());
+
+
+
+
     }
 }

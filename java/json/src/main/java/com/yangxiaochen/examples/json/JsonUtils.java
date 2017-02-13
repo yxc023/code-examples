@@ -5,7 +5,9 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.SerializationFeature;
 
 import java.util.HashMap;
+import java.util.HashSet;
 import java.util.Map;
+import java.util.Set;
 
 /**
  * @author yangxiaochen
@@ -34,5 +36,11 @@ public class JsonUtils {
         map.put("姓名", "杨晓辰");
 
         System.out.println(objectMapper.writeValueAsString(map));
+
+        Set<String> set = new HashSet<>();
+        set.add("11");
+        set.add("22");
+        System.out.println(objectMapper.writeValueAsString(set));
+
     }
 }
