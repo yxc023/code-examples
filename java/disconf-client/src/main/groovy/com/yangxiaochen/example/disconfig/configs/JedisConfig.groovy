@@ -11,6 +11,7 @@ import org.springframework.stereotype.Service
 @Service
 @Scope("singleton")
 @DisconfFile(filename = "redis.properties")
+//@DisconfUpdateService(classes = JedisConfig.class)
 class JedisConfig {
 
 //    @Value('${redis.host}')
@@ -27,4 +28,6 @@ class JedisConfig {
     Integer getPort() {
         return port
     }
+
+
 }

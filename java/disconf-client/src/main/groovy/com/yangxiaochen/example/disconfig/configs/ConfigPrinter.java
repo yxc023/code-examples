@@ -17,9 +17,22 @@ public class ConfigPrinter {
     Logger logger = LogManager.getLogger();
     @Autowired
     JedisConfig jedisConfig;
+    @Autowired
+    JedisConfigWithoutInject jedisConfigWithoutInject;
 
     @PostConstruct
     public void start() {
-        logger.info("{}:{}", jedisConfig.getHost(), jedisConfig.getPort());
+        new Thread(()->{
+            while (true) {
+                logger.info("{}:{}", jedisConfig.getHost(), jedisConfig.getPort());
+                logger.info("{}:{}", jedisConfigWithoutInject.getHost(), jedisConfigWithoutInject.getPort());
+                try {
+                    Thread.sleep(3000);
+                } catch (InterruptedException e) {
+                    e.printStackTrace();
+                }
+            }
+        }).start();
+
     }
 }
