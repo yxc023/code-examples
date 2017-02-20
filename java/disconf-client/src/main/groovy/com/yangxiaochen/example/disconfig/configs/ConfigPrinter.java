@@ -19,13 +19,15 @@ public class ConfigPrinter {
     JedisConfig jedisConfig;
     @Autowired
     JedisConfigWithoutInject jedisConfigWithoutInject;
+//    @Autowired
+//    JedisConfigWithoutInject configWithoutInject;
 
     @PostConstruct
     public void start() {
         new Thread(()->{
             while (true) {
-                logger.info("{}:{}", jedisConfig.getHost(), jedisConfig.getPort());
-                logger.info("{}:{}", jedisConfigWithoutInject.getHost(), jedisConfigWithoutInject.getPort());
+                logger.info("jedisConfig {}:{}", jedisConfig.getHost(), jedisConfig.getPort());
+                logger.info("jedisConfigWithoutInject: {}:{}", jedisConfigWithoutInject.getHost(), jedisConfigWithoutInject.getPort());
                 try {
                     Thread.sleep(3000);
                 } catch (InterruptedException e) {

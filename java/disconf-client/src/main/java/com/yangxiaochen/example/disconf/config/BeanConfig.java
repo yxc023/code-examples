@@ -38,7 +38,7 @@ public class BeanConfig {
     @Bean
     ReloadablePropertiesFactoryBean reloadablePropertiesFactoryBean() {
         ReloadablePropertiesFactoryBean bean = new ReloadablePropertiesFactoryBean();
-        bean.setLocations(Lists.newArrayList("classpath:/redis.properties","classpath:/autoconfig.properties"));
+        bean.setLocations(Lists.newArrayList("classpath:/redis.properties"));
         return bean;
     }
 

@@ -6,6 +6,7 @@ import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.Import;
+import org.springframework.context.annotation.ImportResource;
 
 /**
  * @author yangxiaochen
@@ -13,8 +14,9 @@ import org.springframework.context.annotation.Import;
  */
 @Configuration
 @EnableAutoConfiguration
-@ComponentScan(basePackages = "com.yangxiaochen.example.disconfig.configs")
+@ImportResource(locations = "classpath:spring-main.xml")
 @Import(BeanConfig.class)
+@ComponentScan(basePackages = "com.yangxiaochen.example.disconfig.configs")
 public class Application {
     public static void main(String[] args) {
         SpringApplication.run(Application.class, args);
