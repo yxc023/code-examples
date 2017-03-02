@@ -1,5 +1,7 @@
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  * @author yangxiaochen
@@ -60,5 +62,31 @@ public class Main {
 //        } catch (RuntimeException e) {
 //            throw new TException(e);
 //        }
+
+
+
+        List<Integer> list = new ArrayList();
+        list.add(0);
+        list.add(1);
+        list.add(2);
+        list.add(3);
+        list.add(4);
+        list.add(3);
+
+        int size = list.size();
+        for (int i = 0; i < size; i++) {
+            System.out.println(list.get(i));
+            if (list.get(i) == 3) {
+                list.remove(i);
+                i--;
+                size--;
+            }
+        }
+
+
+        System.out.println();
+        for (Integer integer : list) {
+            System.out.println(integer);
+        }
     }
 }
