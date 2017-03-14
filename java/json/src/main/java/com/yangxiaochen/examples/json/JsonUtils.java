@@ -4,6 +4,7 @@ import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.SerializationFeature;
 
+import java.io.IOException;
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.Map;
@@ -20,6 +21,7 @@ public class JsonUtils {
     static {
         objectMapper = new ObjectMapper();
         objectMapper.enable(SerializationFeature.INDENT_OUTPUT);
+        objectMapper.disable(SerializationFeature.FAIL_ON_EMPTY_BEANS);
     }
 
     public static String object2String(Object object) {
@@ -27,6 +29,15 @@ public class JsonUtils {
             return objectMapper.writeValueAsString(object);
         } catch (JsonProcessingException e) {
             throw new JsonProcessingQuietException(e);
+        }
+    }
+
+    public static Object string2Object(String json, Class clazz) {
+        try {
+            return objectMapper.readValue(json, clazz);
+        } catch (IOException e) {
+            e.printStackTrace();
+            return null;
         }
     }
 

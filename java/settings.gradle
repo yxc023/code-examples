@@ -26,4 +26,5 @@ include 'zookeeper'
 include 'concurrent'
 include 'performance'
 include 'disconf-client'
+include 'jsl'
 
