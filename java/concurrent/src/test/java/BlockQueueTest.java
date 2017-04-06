@@ -65,6 +65,11 @@ public class BlockQueueTest {
 
     @Test
     public void testBarrier() throws BrokenBarrierException, InterruptedException, IOException {
+        System.out.println(getClass().getClassLoader());
+        System.out.println(getClass().getClassLoader().getClass().getClassLoader());
+        System.out.println(CyclicBarrier.class.getClassLoader());
+        System.out.println(BrokenBarrierException.class.getClassLoader());
+
         CyclicBarrier barrier = new CyclicBarrier(10 + 1, ()-> {
             System.out.println("barrier end action");
         });
