@@ -27,4 +27,5 @@ include 'concurrent'
 include 'performance'
 include 'disconf-client'
 include 'jsl'
+include 'retry'
 
