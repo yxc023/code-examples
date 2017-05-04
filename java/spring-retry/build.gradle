@@ -1,0 +1,43 @@
+group 'com.yangxiaochen.examples'
+version '1.0-SNAPSHOT'
+
+apply plugin: 'java'
+apply plugin: 'org.springframework.boot'
+
+
+buildscript {
+
+    repositories {
+        maven {
+            url "http://maven.aliyun.com/nexus/content/groups/public"
+        }
+    }
+
+    dependencies {
+        classpath "org.springframework.boot:spring-boot-gradle-plugin:1.5.3.RELEASE"
+    }
+}
+sourceCompatibility = 1.8
+
+bootRun {
+    systemProperties = System.properties
+}
+
+repositories {
+    maven {
+        url "http://maven.aliyun.com/nexus/content/groups/public"
+    }
+}
+
+dependencies {
+    compile("org.springframework.boot:spring-boot-starter") {
+        exclude module: "spring-boot-starter-logging"
+    }
+    compile("org.springframework.boot:spring-boot-starter-log4j2")
+    compile group: 'org.springframework.retry', name: 'spring-retry', version: '1.2.0.RELEASE'
+    compile group: 'org.aspectj', name: 'aspectjrt', version: '1.8.10'
+    compile group: 'org.aspectj', name: 'aspectjweaver', version: '1.8.10'
+
+    testCompile("org.springframework.boot:spring-boot-starter-test")
+    testCompile group: 'junit', name: 'junit', version: '4.11'
+}

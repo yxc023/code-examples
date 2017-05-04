@@ -29,4 +29,5 @@ include 'disconf-client'
 include 'jsl'
 include 'retry'
 include 'inner-class'
+include 'spring-retry'
 
