@@ -6,10 +6,12 @@ import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.retry.RecoveryCallback;
+import org.springframework.retry.RetryCallback;
+import org.springframework.retry.RetryContext;
 import org.springframework.retry.annotation.EnableRetry;
-
-import java.io.IOException;
-import java.util.concurrent.Executors;
+import org.springframework.retry.policy.SimpleRetryPolicy;
+import org.springframework.retry.support.RetryTemplate;
 
 /**
  * @author yangxiaochen
@@ -22,16 +24,33 @@ import java.util.concurrent.Executors;
 public class Application {
 
 
-    public static void main(String[] args) throws IOException {
+    public static void main(String[] args) throws Throwable {
         ApplicationContext applicationContext = SpringApplication.run(Application.class, args);
-        RetryableService retryableService =  applicationContext.getBean(RetryableService.class);
+        RetryableService retryableService = applicationContext.getBean(RetryableService.class);
 
         System.out.println(AopUtils.isAopProxy(retryableService));
-        Executors.newFixedThreadPool(1).submit(()-> {
-            retryableService.service1(1);
-        });
+        retryableService.service1(1);
 
+
+        RetryTemplate retryTemplate = new RetryTemplate();
+        retryTemplate.setRetryPolicy(new SimpleRetryPolicy(3));
+        String result = retryTemplate.execute(new RetryCallback<String, Throwable>() {
+            @Override
+            public String doWithRetry(RetryContext context) throws Throwable {
+                applicationContext.getBean(RetryableService2.class).service2();
+                return "haha";
+            }
+        }, new RecoveryCallback<String>() {
+            @Override
+            public String recover(RetryContext context) throws Exception {
+//                throw new Exception("haha");
+                return "lala";
+            }
+        });
+        System.out.println(result);
         System.in.read();
+
+
     }
 
 
