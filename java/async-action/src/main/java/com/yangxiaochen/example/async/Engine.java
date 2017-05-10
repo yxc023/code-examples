@@ -1,4 +1,4 @@
-package com.yangxiaochen.example.retry;
+package com.yangxiaochen.example.async;
 
 /**
  * @author yangxiaochen
@@ -8,7 +8,7 @@ public interface Engine {
     void start();
     void stop();
 
-    void submitRetry(RetryAble retryAble);
+    void submitAction(AsyncAction retryAble);
 
 
 }

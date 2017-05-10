@@ -1,4 +1,4 @@
-package com.yangxiaochen.example.retry;
+package com.yangxiaochen.example.async;
 
 /**
  * @author yangxiaochen

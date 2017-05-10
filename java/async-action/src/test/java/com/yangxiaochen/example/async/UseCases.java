@@ -1,6 +1,6 @@
-package com.yangxiaochen.example.retry;
+package com.yangxiaochen.example.async;
 
-import com.yangxiaochen.example.retry.engine.MemoryEngine;
+import com.yangxiaochen.example.async.engine.MemoryEngine;
 import org.junit.Test;
 
 /**
@@ -10,7 +10,7 @@ import org.junit.Test;
 public class UseCases {
 
 
-    public static class PrintEvent implements RetryAble {
+    public static class PrintAction implements AsyncAction {
         private String log;
 
         public String getLog() {
@@ -21,8 +21,9 @@ public class UseCases {
             this.log = log;
         }
 
+
         @Override
-        public boolean retry() {
+        public boolean doAction() throws Exception {
             System.out.println(log);
             return false;
         }
@@ -34,8 +35,8 @@ public class UseCases {
         engine.start();
 
 
-        PrintEvent event = new PrintEvent();
+        PrintAction event = new PrintAction();
         event.setLog("hahaha");
-        engine.submitRetry(event);
+        engine.submitAction(event);
     }
 }
