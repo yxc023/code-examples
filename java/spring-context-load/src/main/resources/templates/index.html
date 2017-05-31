@@ -23,7 +23,12 @@
 <h1 th:text="${message}">你好，世界！</h1>
 <h2>[[${message}]]</h2>
 <ul>
-    <li th:each="name:${context.getBeanDefinitionNames()}" th:text="${name}"></li>
+    <li th:each="beanDefinition:${beanDefinitions}">
+        <p th:text="${beanDefinition.getClass()}">类名</p>
+        <p th:text="${beanDefinition.getBeanClassName()}">bean类名</p>
+        <p th:text="${beanDefinition.getSource()}">source</p>
+
+    </li>
 </ul>
 
 <script src="https://cdn.bootcss.com/jquery/2.2.4/jquery.min.js"></script>

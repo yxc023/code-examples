@@ -40,6 +40,9 @@ dependencies {
     compile group: 'org.thymeleaf', name: 'thymeleaf', version: '3.0.6.RELEASE'
     compile group: 'org.thymeleaf', name: 'thymeleaf-spring4', version: '3.0.6.RELEASE'
 
+    compile group: 'com.fasterxml.jackson.core', name: 'jackson-databind', version: '2.7.4'
+    compile group: 'com.fasterxml.jackson.core', name: 'jackson-annotations', version: '2.7.4'
+
 
 
     testCompile("org.springframework.boot:spring-boot-starter-test")
