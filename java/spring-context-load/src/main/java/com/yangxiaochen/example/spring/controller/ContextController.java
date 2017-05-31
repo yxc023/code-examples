@@ -25,7 +25,6 @@ public class ContextController implements ApplicationContextAware {
 
     @RequestMapping("/")
     public ModelAndView index() throws JsonProcessingException {
-
         ModelAndView mv = new ModelAndView("index");
         mv.addObject("message", "hello world");
         mv.addObject("context", context);
