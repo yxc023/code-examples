@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+<!DOCTYPE html SYSTEM "http://www.thymeleaf.org/dtd/xhtml1-strict-thymeleaf-3.dtd">
 <html lang="zh-CN" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="utf-8">
@@ -27,6 +27,7 @@
         <p th:text="${beanDefinition.getClass()}">类名</p>
         <p th:text="${beanDefinition.getBeanClassName()}">bean类名</p>
         <p th:text="${beanDefinition.getSource()}">source</p>
+        <p th:text="${beanDefinition}">source</p>
 
     </li>
 </ul>

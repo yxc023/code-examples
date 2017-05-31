@@ -37,8 +37,9 @@ dependencies {
         exclude module: "spring-boot-starter-logging"
     }
     compile("org.springframework.boot:spring-boot-starter-log4j2")
-    compile group: 'org.thymeleaf', name: 'thymeleaf', version: '3.0.6.RELEASE'
-    compile group: 'org.thymeleaf', name: 'thymeleaf-spring4', version: '3.0.6.RELEASE'
+    compile("org.springframework.boot:spring-boot-starter-freemarker")
+//    compile group: 'org.thymeleaf', name: 'thymeleaf', version: '3.0.6.RELEASE'
+//    compile group: 'org.thymeleaf', name: 'thymeleaf-spring4', version: '3.0.6.RELEASE'
 
     compile group: 'com.fasterxml.jackson.core', name: 'jackson-databind', version: '2.7.4'
     compile group: 'com.fasterxml.jackson.core', name: 'jackson-annotations', version: '2.7.4'
