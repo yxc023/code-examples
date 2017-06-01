@@ -2,6 +2,7 @@ package com.yangxiaochen.example.spring.controller;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
 import org.springframework.beans.BeansException;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.config.BeanDefinition;
 import org.springframework.beans.factory.config.ConfigurableListableBeanFactory;
 import org.springframework.context.ApplicationContext;
@@ -21,6 +22,8 @@ import java.util.*;
 public class ContextController implements ApplicationContextAware {
 
     ConfigurableApplicationContext context;
+    @Autowired
+    ContextController contextController;
 
 
     @RequestMapping("/")
