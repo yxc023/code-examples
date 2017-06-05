@@ -3,6 +3,7 @@ package com.yangxiaochen.example.spring;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.yangxiaochen.example.spring.controller.ContextController;
 import org.springframework.beans.BeansException;
+import org.springframework.beans.factory.annotation.AutowiredAnnotationBeanPostProcessor;
 import org.springframework.beans.factory.config.BeanPostProcessor;
 import org.springframework.beans.factory.support.BeanDefinitionBuilder;
 import org.springframework.beans.factory.support.DefaultListableBeanFactory;
@@ -18,9 +19,9 @@ public class SelfApplication {
 
     public static void main(String[] args) {
         DefaultListableBeanFactory factory = new DefaultListableBeanFactory();
-
         GenericBeanDefinition beanDefinition = (GenericBeanDefinition) BeanDefinitionBuilder
-                .genericBeanDefinition(ContextController.class).getBeanDefinition();
+                .genericBeanDefinition(ContextController.class)
+                .setAutowireMode(GenericBeanDefinition.AUTOWIRE_BY_TYPE).getBeanDefinition();
 
         factory.registerBeanDefinition("beanDefinition", beanDefinition);
 
@@ -41,8 +42,12 @@ public class SelfApplication {
             }
         });
 
-        ContextController contextController = factory.getBean("beanDefinition",ContextController.class);
+        AutowiredAnnotationBeanPostProcessor autowiredAnnotationBeanPostProcessor = new AutowiredAnnotationBeanPostProcessor();
+        autowiredAnnotationBeanPostProcessor.setBeanFactory(factory);
+        factory.addBeanPostProcessor(autowiredAnnotationBeanPostProcessor);
 
+
+        ContextController contextController = factory.getBean("beanDefinition",ContextController.class);
         try {
             contextController.index();
         } catch (JsonProcessingException e) {

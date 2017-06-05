@@ -63,4 +63,8 @@ public class ContextController implements ApplicationContextAware {
     public void setApplicationContext(ApplicationContext applicationContext) throws BeansException {
         this.context = (ConfigurableApplicationContext) applicationContext;
     }
+
+//    public void setContextController(ContextController contextController) {
+//        this.contextController = contextController;
+//    }
 }
