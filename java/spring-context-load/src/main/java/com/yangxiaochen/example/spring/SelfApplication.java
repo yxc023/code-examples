@@ -21,7 +21,8 @@ public class SelfApplication {
         DefaultListableBeanFactory factory = new DefaultListableBeanFactory();
         GenericBeanDefinition beanDefinition = (GenericBeanDefinition) BeanDefinitionBuilder
                 .genericBeanDefinition(ContextController.class)
-                .setAutowireMode(GenericBeanDefinition.AUTOWIRE_BY_TYPE).getBeanDefinition();
+                .setAutowireMode(GenericBeanDefinition.AUTOWIRE_BY_TYPE)
+                .getBeanDefinition();
 
         factory.registerBeanDefinition("beanDefinition", beanDefinition);
 
@@ -35,7 +36,6 @@ public class SelfApplication {
             public Object postProcessAfterInitialization(Object bean, String beanName) throws BeansException {
                 if (bean instanceof ApplicationContextAware) {
                     GenericApplicationContext context = new GenericApplicationContext(factory);
-
                     ((ApplicationContextAware) bean).setApplicationContext(context);
                 }
                 return bean;
