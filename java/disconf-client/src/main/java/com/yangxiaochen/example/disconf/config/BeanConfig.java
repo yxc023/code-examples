@@ -6,7 +6,6 @@ import com.baidu.disconf.client.addons.properties.ReloadablePropertiesFactoryBea
 import com.baidu.disconf.client.addons.properties.ReloadingPropertyPlaceholderConfigurer;
 import com.google.common.collect.Lists;
 import org.springframework.context.annotation.Bean;
-import org.springframework.context.annotation.Configuration;
 
 import java.io.IOException;
 import java.util.Properties;
@@ -15,7 +14,7 @@ import java.util.Properties;
  * @author yangxiaochen
  * @date 2017/2/7 12:02
  */
-@Configuration
+//@Configuration
 public class BeanConfig {
 
     @Bean(destroyMethod = "destroy")

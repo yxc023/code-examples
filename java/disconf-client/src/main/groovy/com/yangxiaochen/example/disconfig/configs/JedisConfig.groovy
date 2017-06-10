@@ -1,16 +1,14 @@
 package com.yangxiaochen.example.disconfig.configs
 
-import com.baidu.disconf.client.common.annotations.DisconfFile
 import com.baidu.disconf.client.common.annotations.DisconfFileItem
 import org.springframework.context.annotation.Scope
-import org.springframework.stereotype.Service
 /**
  * @author yangxiaochen
  * @date 2017/2/6 17:40
  */
-@Service
+//@Service
 @Scope("singleton")
-@DisconfFile(filename = "redis.properties")
+//@DisconfFile(filename = "redis.properties")
 //@DisconfUpdateService(classes = JedisConfig.class)
 class JedisConfig {
 

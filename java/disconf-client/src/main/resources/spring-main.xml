@@ -22,8 +22,8 @@
         <!--</property>-->
     <!--</bean>-->
 
-    <bean name="configWithoutInject" class="com.yangxiaochen.example.disconfig.configs.JedisConfigWithoutInject">
-        <property name="host" value="${redis.host}"></property>
-        <property name="port" value="${redis.port}"></property>
-    </bean>
+    <!--<bean name="configWithoutInject" class="com.yangxiaochen.example.disconfig.configs.JedisConfigWithoutInject">-->
+        <!--<property name="host" value="${redis.host}"></property>-->
+        <!--<property name="port" value="${redis.port}"></property>-->
+    <!--</bean>-->
 </beans>
