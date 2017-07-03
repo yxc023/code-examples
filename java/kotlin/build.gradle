@@ -2,7 +2,7 @@ group 'com.yangxiaochen.examples'
 version '1.0-SNAPSHOT'
 
 buildscript {
-    ext.kotlin_version = '1.0.3'
+    ext.kotlin_version = '1.1.1'
 
     repositories {
         jcenter()

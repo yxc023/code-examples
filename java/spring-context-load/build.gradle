@@ -37,6 +37,7 @@ dependencies {
         exclude module: "spring-boot-starter-logging"
     }
     compile("org.springframework.boot:spring-boot-starter-log4j2")
+    compile("org.springframework.boot:spring-boot-starter-aop")
     compile("org.springframework.boot:spring-boot-starter-freemarker")
 //    compile group: 'org.thymeleaf', name: 'thymeleaf', version: '3.0.6.RELEASE'
 //    compile group: 'org.thymeleaf', name: 'thymeleaf-spring4', version: '3.0.6.RELEASE'
@@ -48,5 +49,10 @@ dependencies {
 
     testCompile("org.springframework.boot:spring-boot-starter-test")
     testCompile group: 'junit', name: 'junit', version: '4.11'
+}
+
+configurations {
+    all*.exclude group: 'ch.qos.logback', module: 'logback-classic'
+    all*.exclude group: 'ch.qos.logback', module: 'logback-core'
 }
 
