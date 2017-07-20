@@ -42,6 +42,7 @@ public class CuratorFrameworkSimple {
 //            }
 //        }
 
+//        client.getZookeeperClient().getZooKeeper().
         InterProcessMutex mutex = new InterProcessMutex(client, "/lock/resouce1"); // or any InterProcessLock
 
 
