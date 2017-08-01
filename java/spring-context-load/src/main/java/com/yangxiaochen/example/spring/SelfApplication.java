@@ -47,6 +47,13 @@ public class SelfApplication {
         factory.addBeanPostProcessor(autowiredAnnotationBeanPostProcessor);
 
 
+//        new Thread(new Runnable() {
+//            @Override
+//            public void run() {
+//                factory.getBean("beanDefinition",ContextController.class);
+//            }
+//        }).start();
+
         ContextController contextController = factory.getBean("beanDefinition",ContextController.class);
         try {
             contextController.index();
