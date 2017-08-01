@@ -13,7 +13,7 @@ repositories {
 }
 
 dependencies {
-    compile('org.codehaus.groovy:groovy-all:2.4.7')
+    compile('org.codehaus.groovy:groovy-all:2.4.12')
     compile group: 'org.gradle', name: 'gradle-core', version: '3.2'
     compile group: 'org.gradle', name: 'gradle-resources', version: '3.2'
     compile group: 'org.gradle', name: 'gradle-base-services', version: '3.2'
