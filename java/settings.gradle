@@ -31,4 +31,5 @@ include 'async-action'
 include 'inner-class'
 include 'spring-retry'
 include 'jetty-embed'
+include 'jgit'
 
