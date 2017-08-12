@@ -34,6 +34,19 @@ def result = split "_a ,_b_ ,c__" on ',' trimming '_'
 println result
 
 
+def task(String name, Map map) {
+    println name
+}
+
+def task( Map map, String name) {
+    println name
+}
+
+def task( Object t) {
+    println name
+}
+
+task aaa(key: "value")
 
 
 
