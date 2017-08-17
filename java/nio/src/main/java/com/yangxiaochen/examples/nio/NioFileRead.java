@@ -1,5 +1,6 @@
 package com.yangxiaochen.examples.nio;
 
+
 import java.io.IOException;
 import java.io.RandomAccessFile;
 import java.nio.ByteBuffer;
@@ -19,6 +20,7 @@ public class NioFileRead {
 
         int c = channel.read(buffer);
         System.out.println("Read " + c);
+        System.out.println(new String(buffer.array()));
 
 
         randomAccessFile.close();

@@ -20,6 +20,7 @@ class JrGitTest {
         List<Commit> commits = grgit.log()
 
 
+
 // map argument variant
 //        grgit.log(includes: ['master'], excludes: ['old-stuff'], skipCommits: 5)
 
