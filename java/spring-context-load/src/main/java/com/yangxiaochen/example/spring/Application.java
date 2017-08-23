@@ -1,7 +1,9 @@
 package com.yangxiaochen.example.spring;
 
-import org.springframework.boot.SpringApplication;
+import com.yangxiaochen.example.spring.context.FooBeanFacotryPostProcessor;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.boot.builder.SpringApplicationBuilder;
+import org.springframework.context.ApplicationContextInitializer;
 import org.springframework.context.ConfigurableApplicationContext;
 import org.springframework.context.annotation.EnableAspectJAutoProxy;
 
@@ -13,9 +15,13 @@ import org.springframework.context.annotation.EnableAspectJAutoProxy;
 @EnableAspectJAutoProxy
 public class Application {
     public static void main(String[] args) {
-
-
-
-        ConfigurableApplicationContext context = SpringApplication.run(Application.class, args);
+        new SpringApplicationBuilder(Application.class)
+                .initializers(new ApplicationContextInitializer<ConfigurableApplicationContext>() {
+                    @Override
+                    public void initialize(ConfigurableApplicationContext applicationContext) {
+                        applicationContext.getBeanFactory().registerSingleton("testBeanFacotryProcessor", new FooBeanFacotryPostProcessor());
+                    }
+                }).build().run(args);
+//        ConfigurableApplicationContext context = SpringApplication.run(Application.class, args);
     }
 }
