@@ -29,6 +29,7 @@ public class SpringTest {
     public void beanTest() throws Exception {
         Mockito.when(someConfig.foo()).thenReturn("hahahahahhaha");
         System.out.println(someConfig.foo());
-        System.out.println(someConfig2.foo());
+//        System.out.println(someConfig2.foo());
+        System.out.println(someConfig2.someConfig.foo());
     }
 }

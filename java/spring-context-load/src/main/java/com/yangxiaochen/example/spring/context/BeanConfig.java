@@ -22,12 +22,12 @@ public class BeanConfig {
         return new SomeConfig();
     }
 
-    @Bean
-    public SomeConfig2 someConfig2() {
-        if (value == null) {
-            throw new RuntimeException("value is null");
-        }
-        System.out.println(value);
-        return new SomeConfig2();
-    }
+//    @Bean
+//    public SomeConfig2 someConfig2() {
+//        if (value == null) {
+//            throw new RuntimeException("value is null");
+//        }
+//        System.out.println(value);
+//        return new SomeConfig2();
+//    }
 }

@@ -25,6 +25,7 @@ public class ContextController implements ApplicationContextAware {
     @Autowired
     ContextController contextController;
 
+    private String foo;
 
     @RequestMapping("/")
     public ModelAndView index() throws JsonProcessingException {
@@ -67,4 +68,17 @@ public class ContextController implements ApplicationContextAware {
 //    public void setContextController(ContextController contextController) {
 //        this.contextController = contextController;
 //    }
+
+
+    public String getFoo() {
+        return foo;
+    }
+
+    public void setFoo(String foo) {
+        this.foo = foo;
+    }
+
+    public void init() {
+
+    }
 }
