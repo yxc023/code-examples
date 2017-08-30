@@ -46,3 +46,5 @@ interface Foo<out T : Any> : Serializable {
     fun foo(a: Int): T
 }
 
+
+
