@@ -1,12 +1,13 @@
 package com.yangxiaochen.examples.activiti;
 
 import com.yangxiaochen.examples.activiti.listener.MyActivitiEventListener;
-import org.activiti.engine.*;
+import org.activiti.engine.ProcessEngine;
+import org.activiti.engine.ProcessEngineConfiguration;
+import org.activiti.engine.RepositoryService;
+import org.activiti.engine.RuntimeService;
 import org.activiti.engine.repository.Deployment;
 import org.activiti.engine.runtime.ProcessInstance;
 import org.activiti.engine.task.Task;
-import org.apache.logging.log4j.LogManager;
-import org.apache.logging.log4j.Logger;
 
 import java.util.HashMap;
 import java.util.List;
@@ -14,12 +15,10 @@ import java.util.Map;
 
 /**
  * @author yangxiaochen
- * @date 16/5/19 下午11:24
+ * @date 2017/9/19 15:17
  */
-public class Main {
-    private static Logger LOG = LogManager.getLogger(Main.class);
-    public static void main(String[] args) throws InterruptedException {
-
+public class BpmnTest {
+    public static void main(String[] args) {
         ProcessEngine processEngine = ProcessEngineConfiguration.createStandaloneProcessEngineConfiguration()
                 .setDatabaseSchemaUpdate(ProcessEngineConfiguration.DB_SCHEMA_UPDATE_TRUE)
                 .setJdbcUrl("jdbc:mysql://localhost:3306/activiti")
@@ -36,32 +35,23 @@ public class Main {
                 .addClasspathResource("demo.bpmn")
                 .deploy();
 
-        LOG.info("Number of process definitions: " + repositoryService.createProcessDefinitionQuery().count());
 
 
         Map<String, Object> variables = new HashMap<String, Object>();
         variables.put("employeeName", "Kermit");
         variables.put("numberOfDays", new Integer(4));
         variables.put("vacationMotivation", "I'm really tired!");
+        variables.put("amount", 1500);
 
         RuntimeService runtimeService = processEngine.getRuntimeService();
         ProcessInstance processInstance = runtimeService.startProcessInstanceByKey("Process_0b8brnk", variables);
 
-        LOG.info("Number of process instances: " + runtimeService.createProcessInstanceQuery().count());
+        List<Task> taskList = processEngine.getTaskService().createTaskQuery().processInstanceId(processInstance.getId()).list();
 
-
-        // Fetch all tasks for the management group
-        TaskService taskService = processEngine.getTaskService();
-        List<Task> tasks = taskService.createTaskQuery().taskCandidateGroup("management").list();
-        for (Task task : tasks) {
-            LOG.info("Task available: {}, id: {}",task.getName(), task.getId());
+        while (taskList.size() != 0)
+        for (Task task : taskList) {
+            processEngine.getTaskService().complete(task.getId());
+            taskList = processEngine.getTaskService().createTaskQuery().processInstanceId(processInstance.getId()).list();
         }
-
-        Task task = tasks.get(0);
-
-        Map<String, Object> taskVariables = new HashMap<String, Object>();
-        taskVariables.put("vacationApproved", "false");
-        taskVariables.put("managerMotivation", "We have a tight deadline!");
-        taskService.complete(task.getId(), taskVariables);
     }
 }

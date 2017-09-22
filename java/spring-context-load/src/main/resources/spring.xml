@@ -10,7 +10,7 @@
           init-method="init"
           lazy-init="true"
           scope="singleton">
-        <property name="foo" value="hahahah"></property>
+        <property name="foo" value="${value}"></property>
     </bean>
 
 </beans>

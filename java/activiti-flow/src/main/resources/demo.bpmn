@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<bpmn:definitions xmlns:bpmn="http://www.omg.org/spec/BPMN/20100524/MODEL" xmlns:bpmndi="http://www.omg.org/spec/BPMN/20100524/DI" xmlns:di="http://www.omg.org/spec/DD/20100524/DI" xmlns:dc="http://www.omg.org/spec/DD/20100524/DC" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" id="Definitions_1" targetNamespace="http://bpmn.io/schema/bpmn" exporter="Camunda Modeler" exporterVersion="1.10.0">
+  <bpmn:process id="Process_0b8brnk" isExecutable="true">
+    <bpmn:startEvent id="StartEvent_1gz7dtg">
+      <bpmn:outgoing>SequenceFlow_0to3fmb</bpmn:outgoing>
+    </bpmn:startEvent>
+    <bpmn:sequenceFlow id="SequenceFlow_0to3fmb" sourceRef="StartEvent_1gz7dtg" targetRef="Task_0bhdjok" />
+    <bpmn:userTask id="Task_0bhdjok" name="直接上级审批">
+      <bpmn:incoming>SequenceFlow_0to3fmb</bpmn:incoming>
+      <bpmn:outgoing>SequenceFlow_1u7tli5</bpmn:outgoing>
+    </bpmn:userTask>
+    <bpmn:exclusiveGateway id="ExclusiveGateway_1wc1pv9">
+      <bpmn:incoming>SequenceFlow_1u7tli5</bpmn:incoming>
+      <bpmn:outgoing>SequenceFlow_1cuj4gr</bpmn:outgoing>
+      <bpmn:outgoing>SequenceFlow_06ybx6t</bpmn:outgoing>
+    </bpmn:exclusiveGateway>
+    <bpmn:sequenceFlow id="SequenceFlow_1u7tli5" sourceRef="Task_0bhdjok" targetRef="ExclusiveGateway_1wc1pv9" />
+    <bpmn:sequenceFlow id="SequenceFlow_1cuj4gr" name="&#10;&#10;" sourceRef="ExclusiveGateway_1wc1pv9" targetRef="Task_0k4uodz">
+      <bpmn:conditionExpression xsi:type="bpmn:tFormalExpression"><![CDATA[${amount>1000}]]></bpmn:conditionExpression>
+    </bpmn:sequenceFlow>
+    <bpmn:userTask id="Task_0k4uodz" name="主管审批">
+      <bpmn:incoming>SequenceFlow_1cuj4gr</bpmn:incoming>
+      <bpmn:outgoing>SequenceFlow_02mll57</bpmn:outgoing>
+    </bpmn:userTask>
+    <bpmn:sequenceFlow id="SequenceFlow_06ybx6t" name="account&#60;=1000" sourceRef="ExclusiveGateway_1wc1pv9" targetRef="Task_1hyvkog">
+      <bpmn:conditionExpression xsi:type="bpmn:tFormalExpression"><![CDATA[${amount<=1000}]]></bpmn:conditionExpression>
+    </bpmn:sequenceFlow>
+    <bpmn:userTask id="Task_1hyvkog" name="总监审批">
+      <bpmn:incoming>SequenceFlow_06ybx6t</bpmn:incoming>
+      <bpmn:outgoing>SequenceFlow_0b922tn</bpmn:outgoing>
+    </bpmn:userTask>
+    <bpmn:complexGateway id="ExclusiveGateway_03yn506">
+      <bpmn:incoming>SequenceFlow_02mll57</bpmn:incoming>
+      <bpmn:incoming>SequenceFlow_0b922tn</bpmn:incoming>
+      <bpmn:outgoing>SequenceFlow_0i2z3af</bpmn:outgoing>
+    </bpmn:complexGateway>
+    <bpmn:sequenceFlow id="SequenceFlow_02mll57" sourceRef="Task_0k4uodz" targetRef="ExclusiveGateway_03yn506" />
+    <bpmn:sequenceFlow id="SequenceFlow_0b922tn" sourceRef="Task_1hyvkog" targetRef="ExclusiveGateway_03yn506" />
+    <bpmn:sequenceFlow id="SequenceFlow_0i2z3af" sourceRef="ExclusiveGateway_03yn506" targetRef="Task_1fbi62i" />
+    <bpmn:userTask id="Task_1fbi62i" name="财务审批">
+      <bpmn:incoming>SequenceFlow_0i2z3af</bpmn:incoming>
+      <bpmn:outgoing>SequenceFlow_1sbka27</bpmn:outgoing>
+    </bpmn:userTask>
+    <bpmn:sequenceFlow id="SequenceFlow_1sbka27" sourceRef="Task_1fbi62i" targetRef="Task_0hiq5y3" />
+    <bpmn:scriptTask id="Task_0hiq5y3" name="归档" >
+      <bpmn:incoming>SequenceFlow_1sbka27</bpmn:incoming>
+      <bpmn:outgoing>SequenceFlow_11ikh9n</bpmn:outgoing>
+      <bpmn:script>1+1</bpmn:script>
+    </bpmn:scriptTask>
+    <bpmn:endEvent id="EndEvent_090h2mv">
+      <bpmn:incoming>SequenceFlow_11ikh9n</bpmn:incoming>
+    </bpmn:endEvent>
+    <bpmn:sequenceFlow id="SequenceFlow_11ikh9n" sourceRef="Task_0hiq5y3" targetRef="EndEvent_090h2mv" />
+  </bpmn:process>
+</bpmn:definitions>
