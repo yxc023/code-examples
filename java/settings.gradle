@@ -33,4 +33,5 @@ include 'spring-retry'
 include 'jetty-embed'
 include 'jgit'
 include 'jdbc'
+include 'quartz'
 
