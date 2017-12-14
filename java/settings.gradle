@@ -34,4 +34,5 @@ include 'jetty-embed'
 include 'jgit'
 include 'jdbc'
 include 'quartz'
+include 'jooq'
 

@@ -1,10 +1,11 @@
 package com.yangxiaochen.examples.activiti;
 
-import org.camunda.bpm.engine.ProcessEngine;
-import org.camunda.bpm.engine.ProcessEngineConfiguration;
-import org.camunda.bpm.engine.RepositoryService;
-import org.camunda.bpm.engine.runtime.ProcessInstance;
-import org.camunda.bpm.engine.task.Task;
+
+import org.activiti.engine.ProcessEngine;
+import org.activiti.engine.ProcessEngineConfiguration;
+import org.activiti.engine.RepositoryService;
+import org.activiti.engine.runtime.ProcessInstance;
+import org.activiti.engine.task.Task;
 import org.junit.Before;
 import org.junit.Test;
 
@@ -44,8 +45,8 @@ public class EventTest {
     @Test
     public void test() throws Exception {
         ProcessInstance processInstance = processEngine.getRuntimeService().startProcessInstanceByKey("EventTestProcess", new HashMap() {{
-//            put("startCompany", "A10001");
-//            put("publishScope", "nation");
+            put("startCompany", "A10001");
+            put("publishScope", "nation");
         }});
 
         List<Task> taskList = processEngine.getTaskService().createTaskQuery().processInstanceId(processInstance.getId()).list();
