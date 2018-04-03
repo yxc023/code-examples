@@ -35,4 +35,5 @@ include 'jgit'
 include 'jdbc'
 include 'quartz'
 include 'jooq'
+include 'classloader'
 

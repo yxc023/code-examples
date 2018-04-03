@@ -9,7 +9,11 @@ sourceCompatibility = 1.8
 
 dependencies {
 
-    compile('org.jooq:jooq:3.9.6')
+    compile 'org.slf4j:slf4j-api:1.7.21'
+    compile 'ch.qos.logback:logback-core:1.2.3'
+    compile 'ch.qos.logback:logback-classic:1.2.3'
+
+    compile('org.jooq:jooq:3.10.6')
     runtime('mysql:mysql-connector-java:5.1.44')
     jooqRuntime('mysql:mysql-connector-java:5.1.44')
 
@@ -28,8 +32,10 @@ jooq {
 
             database {
                 name = 'org.jooq.util.mysql.MySQLDatabase'
-                includes = 'test'
+                inputSchema = 'jooq_test'
+
             }
+
             generate {
                 relations = true
                 deprecated = false
@@ -39,7 +45,7 @@ jooq {
                 // ...
             }
             target {
-                packageName = 'nu.studer.sample'
+                packageName = 'com.yangxiaochen.jooq'
                 // directory = ...
             }
         }

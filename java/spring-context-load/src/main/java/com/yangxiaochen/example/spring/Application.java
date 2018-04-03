@@ -26,6 +26,7 @@ public class Application {
                         applicationContext.getBeanFactory().registerSingleton("testBeanFacotryProcessor", new FooBeanFacotryPostProcessor());
                     }
                 }).contextClass(AnnotationConfigApplicationContext.class)
+                .listeners()
                 .build()
                 .run(args);
 
