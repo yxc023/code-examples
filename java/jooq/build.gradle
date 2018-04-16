@@ -33,6 +33,7 @@ jooq {
             database {
                 name = 'org.jooq.util.mysql.MySQLDatabase'
                 inputSchema = 'jooq_test'
+                outputSchemaToDefault = true
 
             }
 
@@ -42,6 +43,7 @@ jooq {
                 records = true
                 immutablePojos = true
                 fluentSetters = true
+                daos = true
                 // ...
             }
             target {
