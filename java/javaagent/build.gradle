@@ -1,0 +1,34 @@
+plugins {
+    id 'java'
+}
+
+group 'com.yangxiaochen.examples'
+version '1.0.0'
+
+repositories {
+    mavenCentral()
+}
+
+jar {
+
+    manifest {
+        attributes("Implementation-Title": "Gradle",
+                "Implementation-Version": archiveVersion,
+                "Manifest-Version": "1.0",
+                "Can-Redefine-Classes": "true",
+                "Can-Retransform-Classes": "true",
+                "Premain-Class": "com.yangxiaochen.examples.javaagent.SimpleJavaAgent"
+        )
+    }
+}
+
+dependencies {
+    implementation 'org.javassist:javassist:3.28.0-GA'
+
+    testImplementation 'org.junit.jupiter:junit-jupiter-api:5.7.0'
+    testRuntimeOnly 'org.junit.jupiter:junit-jupiter-engine:5.7.0'
+}
+
+test {
+    useJUnitPlatform()
+}

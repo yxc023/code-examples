@@ -1,0 +1,21 @@
+plugins {
+    id 'java'
+}
+
+group 'com.yangxiaochen.examples'
+version '1.0.0'
+
+
+
+dependencies {
+    compile 'org.javers:javers-core:6.6.5'
+    compile 'org.javers:javers-persistence-sql:6.6.5'
+    compile 'ch.qos.logback:logback-core:1.2.3'
+    compile 'ch.qos.logback:logback-classic:1.2.3'
+
+    compile 'mysql:mysql-connector-java:8.0.18'
+
+    testImplementation 'org.junit.jupiter:junit-jupiter-api:5.7.0'
+    testRuntimeOnly 'org.junit.jupiter:junit-jupiter-engine:5.7.0'
+}
+
