@@ -3,9 +3,13 @@ package com.yangxiaochen.example.javers;
 import com.mysql.cj.jdbc.MysqlDataSource;
 import org.javers.core.Javers;
 import org.javers.core.JaversBuilder;
+import org.javers.core.diff.Change;
 import org.javers.core.diff.Diff;
+import org.javers.core.diff.changetype.ValueChange;
 import org.javers.core.metamodel.annotation.Entity;
 import org.javers.core.metamodel.annotation.Id;
+import org.javers.core.metamodel.annotation.Value;
+import org.javers.core.metamodel.annotation.ValueObject;
 import org.javers.core.metamodel.type.JaversType;
 import org.javers.core.metamodel.type.ValueObjectType;
 import org.javers.repository.sql.ConnectionProvider;
@@ -67,9 +71,27 @@ public class Main {
         System.out.println(diff.getChanges().get(0).getAffectedGlobalId());
         System.out.println(diff);
 
-        javers.commit("system",tommyOld);
-        javers.commit("system",tommyNew);
+        System.out.println(javers.commit("system", tommyOld));
+        System.out.println(javers.commit("system", tommyNew));
+        tommyNew.setFullName("123");
+        System.out.println(javers.commit("system", tommyNew));
+        System.out.println(javers.commit("system", tommyNew));
 
+        tommyNew.info.k = 13;
+        javers.commit("system", tommyNew);
+
+        tommyNew.v.v = "value2";
+
+        javers.commit("system", tommyNew);
+
+        Diff diff2 = javers.compare(tommyOld, tommyNew);
+        for (Change change : diff2.getChanges()) {
+            System.out.println(change.getClass());
+            System.out.println(change);
+            if (change instanceof ValueChange) {
+                System.out.println(((ValueChange) change).getPropertyName());
+            }
+        }
 
     }
 
@@ -79,10 +101,14 @@ public class Main {
         @Id
         private String name;
         private String fullName;
+        private Info info;
+        private ValueObjectO v;
 
         public Person(String name, String fullName) {
             this.name = name;
             this.fullName = fullName;
+            this.info = new Info(12);
+            this.v = new ValueObjectO("value1");
         }
 
         public String getName() {
@@ -101,17 +127,78 @@ public class Main {
             this.fullName = fullName;
         }
 
+        public Info getInfo() {
+            return info;
+        }
+
+        public void setInfo(Info info) {
+            this.info = info;
+        }
+
+        public ValueObjectO getV() {
+            return v;
+        }
+
+        public void setV(ValueObjectO v) {
+            this.v = v;
+        }
+
         @Override
         public boolean equals(Object o) {
             if (this == o) return true;
             if (o == null || getClass() != o.getClass()) return false;
             Person person = (Person) o;
-            return Objects.equals(name, person.name) && Objects.equals(fullName, person.fullName);
+            return Objects.equals(name, person.name) && Objects.equals(fullName, person.fullName) && Objects.equals(info, person.info) && Objects.equals(v, person.v);
         }
 
         @Override
         public int hashCode() {
-            return Objects.hash(name, fullName);
+            return Objects.hash(name, fullName, info, v);
+        }
+    }
+
+    @Entity
+    public static class Info {
+        @Id
+        private int k;
+
+        public Info(int k) {
+            this.k = k;
+        }
+
+        @Override
+        public boolean equals(Object o) {
+            if (this == o) return true;
+            if (o == null || getClass() != o.getClass()) return false;
+            Info info = (Info) o;
+            return k == info.k;
+        }
+
+        @Override
+        public int hashCode() {
+            return Objects.hash(k);
+        }
+    }
+
+    @Value
+    public static class ValueObjectO {
+        public String v;
+
+        public ValueObjectO(String v) {
+            this.v = v;
+        }
+
+        @Override
+        public boolean equals(Object o) {
+            if (this == o) return true;
+            if (o == null || getClass() != o.getClass()) return false;
+            ValueObjectO that = (ValueObjectO) o;
+            return Objects.equals(v, that.v);
+        }
+
+        @Override
+        public int hashCode() {
+            return Objects.hash(v);
         }
     }
 }
