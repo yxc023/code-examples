@@ -97,3 +97,15 @@ class GreetingPlugin implements Plugin<Project> {
         }
     }
 }
+
+
+if (project.hasProperty('enableAutoTest') && project.property('enableAutoTest') == 'true') {
+    sourceSets {
+        main {
+            // 如果传入了enableAutoTest参数且为true，则将test源代码集也包含进来
+            java {
+                srcDirs += 'src/test/java'
+            }
+        }
+    }
+}

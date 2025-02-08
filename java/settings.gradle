@@ -47,4 +47,6 @@ include 'jooq'
 include 'classloader'
 include 'javaagent'
 include 'javers'
+include 'camunda'
+include 'langchain4j'
 
